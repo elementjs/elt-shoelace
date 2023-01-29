@@ -1,5 +1,7 @@
 import { node_add_event_listener, o, node_observe, Repeat, Renderable } from "elt"
+import { sl_is } from "./components"
 import { Future } from "./utils"
+import { builder as CSS } from "osun"
 
 /** Helper function to not have to type everything */
 function is_show_hide(node: Node): node is Node & { show(): void, hide(): void } {
@@ -76,13 +78,18 @@ export function $options<T extends object>(
   // we should use a symbol when using primitive values
 }
 
+// Events :
+//   - sl-select de MenuItem, avec { item: SlMenuItem }
+//   - sl-selection-change depuis sl-tree, avec { selection: TreeItem[] }
+// <sl-select> utilise le value, mais pourrait avoir besoin de faire un mapping
+
 /**
  * Binds an observable to a Node
  */
-export function $model(ob: o.RO<number>): (n: { value: number }) => void
-export function $model(ob: o.RO<string>): (n: { value: string }) => void
-export function $model(ob: o.RO<string>): (n: { value: string | string[] }) => void
-export function $model<T>(ob: o.RO<any>): (n: any) => void {
+export function $value(ob: o.RO<number>): (n: { value: number }) => void
+export function $value(ob: o.RO<string>): (n: { value: string }) => void
+export function $value(ob: o.RO<string>): (n: { value: string | string[] }) => void
+export function $value<T>(ob: o.RO<any>): (n: any) => void {
   return (node: Node & { value: string }) => {
     // node.value = o.get(ob)
 
@@ -103,4 +110,27 @@ export function $model<T>(ob: o.RO<any>): (n: any) => void {
       })
     }
   }
+}
+
+
+export function popup(anchor: Element, fn: () => Node) {
+  const popup = fn()
+  if (!sl_is(popup, "sl-popup")) {
+    throw new Error("popup() must explicitely return a popup element")
+  }
+  popup.anchor = anchor
+  popup.active = true
+  popup.style.setProperty("--arrow-color", "var(--sl-color-neutral-200)")
+
+  console.log(popup.firstElementChild)
+  document.body.appendChild(popup)
+  // anchor.after(popup)
+  // Now, we should probably listen to clicks outside the popup
+}
+
+export const css = new class css {
+  widgetContainer = CSS
+    .padding("var(--sl-spacing-medium)")
+    .border("var(--sl-color-neutral-300)")
+    .borderRadius("var(--sl-border-radius-small)")
 }
