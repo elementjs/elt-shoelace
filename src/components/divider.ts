@@ -10,7 +10,7 @@ export type {}
 (SlDivider.prototype as any)[sym_sl_elt] = "sl-divider"
 
 declare module "elt" {
-  interface attrs_sl_divider extends Attrs<HTMLElementTagNameMap["sl-divider"]>, Global {
+  interface attrs_sl_divider extends Attrs<HTMLElementTagNameMap["sl-divider"]> {
     vertical?: NRO<boolean>
   }
 

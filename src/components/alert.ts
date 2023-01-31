@@ -10,7 +10,7 @@ export type {}
 (SlAlert.prototype as any)[sym_sl_elt] = "sl-alert"
 
 declare module "elt" {
-  interface attrs_sl_alert extends Attrs<HTMLElementTagNameMap["sl-alert"]>, Global {
+  interface attrs_sl_alert extends Attrs<HTMLElementTagNameMap["sl-alert"]> {
     open?: NRO<boolean>
     closable?: NRO<boolean>
     variant?: NRO<'primary' | 'success' | 'neutral' | 'warning' | 'danger'>

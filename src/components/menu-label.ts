@@ -10,7 +10,7 @@ export type {}
 (SlMenuLabel.prototype as any)[sym_sl_elt] = "sl-menu-label"
 
 declare module "elt" {
-  interface attrs_sl_menu_label extends Attrs<HTMLElementTagNameMap["sl-menu-label"]>, Global {
+  interface attrs_sl_menu_label extends Attrs<HTMLElementTagNameMap["sl-menu-label"]> {
   }
 
   interface ElementMap {

@@ -10,7 +10,7 @@ export type {}
 (SlDropdown.prototype as any)[sym_sl_elt] = "sl-dropdown"
 
 declare module "elt" {
-  interface attrs_sl_dropdown extends Attrs<HTMLElementTagNameMap["sl-dropdown"]>, Global {
+  interface attrs_sl_dropdown extends Attrs<HTMLElementTagNameMap["sl-dropdown"]> {
     open?: NRO<boolean>
     placement?: NRO<'top' | 'top-start' | 'top-end' | 'bottom' | 'bottom-start' | 'bottom-end' | 'right' | 'right-start' | 'right-end' | 'left' | 'left-start' | 'left-end'>
     disabled?: NRO<boolean>

@@ -10,7 +10,7 @@ export type {}
 (SlSwitch.prototype as any)[sym_sl_elt] = "sl-switch"
 
 declare module "elt" {
-  interface attrs_sl_switch extends Attrs<HTMLElementTagNameMap["sl-switch"]>, Global {
+  interface attrs_sl_switch extends Attrs<HTMLElementTagNameMap["sl-switch"]> {
     title?: NRO<string>
     name?: NRO<string>
     value?: NRO<string>

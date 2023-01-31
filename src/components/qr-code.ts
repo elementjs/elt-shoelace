@@ -10,7 +10,7 @@ export type {}
 (SlQrCode.prototype as any)[sym_sl_elt] = "sl-qr-code"
 
 declare module "elt" {
-  interface attrs_sl_qr_code extends Attrs<HTMLElementTagNameMap["sl-qr-code"]>, Global {
+  interface attrs_sl_qr_code extends Attrs<HTMLElementTagNameMap["sl-qr-code"]> {
     value?: NRO<string>
     label?: NRO<string>
     size?: NRO<number>

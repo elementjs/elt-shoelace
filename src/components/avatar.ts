@@ -10,7 +10,7 @@ export type {}
 (SlAvatar.prototype as any)[sym_sl_elt] = "sl-avatar"
 
 declare module "elt" {
-  interface attrs_sl_avatar extends Attrs<HTMLElementTagNameMap["sl-avatar"]>, Global {
+  interface attrs_sl_avatar extends Attrs<HTMLElementTagNameMap["sl-avatar"]> {
     image?: NRO<string>
     label?: NRO<string>
     initials?: NRO<string>

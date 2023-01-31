@@ -10,7 +10,7 @@ export type {}
 (SlColorPicker.prototype as any)[sym_sl_elt] = "sl-color-picker"
 
 declare module "elt" {
-  interface attrs_sl_color_picker extends Attrs<HTMLElementTagNameMap["sl-color-picker"]>, Global {
+  interface attrs_sl_color_picker extends Attrs<HTMLElementTagNameMap["sl-color-picker"]> {
     value?: NRO<string>
     label?: NRO<string>
     format?: NRO<'hex' | 'rgb' | 'hsl' | 'hsv'>

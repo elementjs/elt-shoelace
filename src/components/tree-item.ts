@@ -10,7 +10,7 @@ export type {}
 (SlTreeItem.prototype as any)[sym_sl_elt] = "sl-tree-item"
 
 declare module "elt" {
-  interface attrs_sl_tree_item extends Attrs<HTMLElementTagNameMap["sl-tree-item"]>, Global {
+  interface attrs_sl_tree_item extends Attrs<HTMLElementTagNameMap["sl-tree-item"]> {
     expanded?: NRO<boolean>
     selected?: NRO<boolean>
     disabled?: NRO<boolean>

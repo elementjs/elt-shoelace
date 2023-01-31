@@ -10,7 +10,7 @@ export type {}
 (SlResizeObserver.prototype as any)[sym_sl_elt] = "sl-resize-observer"
 
 declare module "elt" {
-  interface attrs_sl_resize_observer extends Attrs<HTMLElementTagNameMap["sl-resize-observer"]>, Global {
+  interface attrs_sl_resize_observer extends Attrs<HTMLElementTagNameMap["sl-resize-observer"]> {
     disabled?: NRO<boolean>
   }
 

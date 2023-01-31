@@ -10,7 +10,7 @@ export type {}
 (SlBadge.prototype as any)[sym_sl_elt] = "sl-badge"
 
 declare module "elt" {
-  interface attrs_sl_badge extends Attrs<HTMLElementTagNameMap["sl-badge"]>, Global {
+  interface attrs_sl_badge extends Attrs<HTMLElementTagNameMap["sl-badge"]> {
     variant?: NRO<'primary' | 'success' | 'neutral' | 'warning' | 'danger'>
     pill?: NRO<boolean>
     pulse?: NRO<boolean>

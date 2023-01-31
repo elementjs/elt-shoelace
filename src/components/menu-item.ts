@@ -10,7 +10,7 @@ export type {}
 (SlMenuItem.prototype as any)[sym_sl_elt] = "sl-menu-item"
 
 declare module "elt" {
-  interface attrs_sl_menu_item extends Attrs<HTMLElementTagNameMap["sl-menu-item"]>, Global {
+  interface attrs_sl_menu_item extends Attrs<HTMLElementTagNameMap["sl-menu-item"]> {
     type?: NRO<'normal' | 'checkbox'>
     checked?: NRO<boolean>
     value?: NRO<string>

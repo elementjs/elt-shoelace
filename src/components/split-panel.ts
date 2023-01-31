@@ -10,7 +10,7 @@ export type {}
 (SlSplitPanel.prototype as any)[sym_sl_elt] = "sl-split-panel"
 
 declare module "elt" {
-  interface attrs_sl_split_panel extends Attrs<HTMLElementTagNameMap["sl-split-panel"]>, Global {
+  interface attrs_sl_split_panel extends Attrs<HTMLElementTagNameMap["sl-split-panel"]> {
     position?: NRO<number>
     "position-in-pixels"?: NRO<number>
     vertical?: NRO<boolean>

@@ -10,7 +10,7 @@ export type {}
 (SlDialog.prototype as any)[sym_sl_elt] = "sl-dialog"
 
 declare module "elt" {
-  interface attrs_sl_dialog extends Attrs<HTMLElementTagNameMap["sl-dialog"]>, Global {
+  interface attrs_sl_dialog extends Attrs<HTMLElementTagNameMap["sl-dialog"]> {
     open?: NRO<boolean>
     label?: NRO<string>
     "no-header"?: NRO<boolean>

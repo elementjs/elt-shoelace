@@ -10,7 +10,7 @@ export type {}
 (SlAnimatedImage.prototype as any)[sym_sl_elt] = "sl-animated-image"
 
 declare module "elt" {
-  interface attrs_sl_animated_image extends Attrs<HTMLElementTagNameMap["sl-animated-image"]>, Global {
+  interface attrs_sl_animated_image extends Attrs<HTMLElementTagNameMap["sl-animated-image"]> {
     src?: NRO<string>
     alt?: NRO<string>
     play?: NRO<boolean>

@@ -10,7 +10,7 @@ export type {}
 (SlPopup.prototype as any)[sym_sl_elt] = "sl-popup"
 
 declare module "elt" {
-  interface attrs_sl_popup extends Attrs<HTMLElementTagNameMap["sl-popup"]>, Global {
+  interface attrs_sl_popup extends Attrs<HTMLElementTagNameMap["sl-popup"]> {
     anchor?: NRO<Element | string>
     active?: NRO<boolean>
     placement?: NRO<'top' | 'top-start' | 'top-end' | 'bottom' | 'bottom-start' | 'bottom-end' | 'right' | 'right-start' | 'right-end' | 'left' | 'left-start' | 'left-end'>

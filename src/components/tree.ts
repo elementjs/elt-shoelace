@@ -10,7 +10,7 @@ export type {}
 (SlTree.prototype as any)[sym_sl_elt] = "sl-tree"
 
 declare module "elt" {
-  interface attrs_sl_tree extends Attrs<HTMLElementTagNameMap["sl-tree"]>, Global {
+  interface attrs_sl_tree extends Attrs<HTMLElementTagNameMap["sl-tree"]> {
     selection?: NRO<'single' | 'multiple' | 'leaf'>
   }
 

@@ -10,7 +10,7 @@ export type {}
 (SlInclude.prototype as any)[sym_sl_elt] = "sl-include"
 
 declare module "elt" {
-  interface attrs_sl_include extends Attrs<HTMLElementTagNameMap["sl-include"]>, Global {
+  interface attrs_sl_include extends Attrs<HTMLElementTagNameMap["sl-include"]> {
     src?: NRO<string>
     mode?: NRO<'cors' | 'no-cors' | 'same-origin'>
     "allow-scripts"?: NRO<boolean>

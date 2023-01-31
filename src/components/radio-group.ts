@@ -10,7 +10,7 @@ export type {}
 (SlRadioGroup.prototype as any)[sym_sl_elt] = "sl-radio-group"
 
 declare module "elt" {
-  interface attrs_sl_radio_group extends Attrs<HTMLElementTagNameMap["sl-radio-group"]>, Global {
+  interface attrs_sl_radio_group extends Attrs<HTMLElementTagNameMap["sl-radio-group"]> {
     label?: NRO<string>
     "help-text"?: NRO<string>
     name?: NRO<string>

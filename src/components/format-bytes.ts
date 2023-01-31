@@ -10,7 +10,7 @@ export type {}
 (SlFormatBytes.prototype as any)[sym_sl_elt] = "sl-format-bytes"
 
 declare module "elt" {
-  interface attrs_sl_format_bytes extends Attrs<HTMLElementTagNameMap["sl-format-bytes"]>, Global {
+  interface attrs_sl_format_bytes extends Attrs<HTMLElementTagNameMap["sl-format-bytes"]> {
     value?: NRO<number>
     unit?: NRO<'byte' | 'bit'>
     display?: NRO<'long' | 'short' | 'narrow'>

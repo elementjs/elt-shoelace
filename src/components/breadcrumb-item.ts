@@ -10,7 +10,7 @@ export type {}
 (SlBreadcrumbItem.prototype as any)[sym_sl_elt] = "sl-breadcrumb-item"
 
 declare module "elt" {
-  interface attrs_sl_breadcrumb_item extends Attrs<HTMLElementTagNameMap["sl-breadcrumb-item"]>, Global {
+  interface attrs_sl_breadcrumb_item extends Attrs<HTMLElementTagNameMap["sl-breadcrumb-item"]> {
     href?: NRO<string | undefined>
     target?: NRO<'_blank' | '_parent' | '_self' | '_top' | undefined>
     rel?: NRO<string>

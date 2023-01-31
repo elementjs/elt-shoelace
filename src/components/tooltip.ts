@@ -10,7 +10,7 @@ export type {}
 (SlTooltip.prototype as any)[sym_sl_elt] = "sl-tooltip"
 
 declare module "elt" {
-  interface attrs_sl_tooltip extends Attrs<HTMLElementTagNameMap["sl-tooltip"]>, Global {
+  interface attrs_sl_tooltip extends Attrs<HTMLElementTagNameMap["sl-tooltip"]> {
     content?: NRO<string>
     placement?: NRO<'top' | 'top-start' | 'top-end' | 'right' | 'right-start' | 'right-end' | 'bottom' | 'bottom-start' | 'bottom-end' | 'left' | 'left-start' | 'left-end'>
     disabled?: NRO<boolean>

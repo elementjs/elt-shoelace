@@ -10,7 +10,7 @@ export type {}
 (SlProgressBar.prototype as any)[sym_sl_elt] = "sl-progress-bar"
 
 declare module "elt" {
-  interface attrs_sl_progress_bar extends Attrs<HTMLElementTagNameMap["sl-progress-bar"]>, Global {
+  interface attrs_sl_progress_bar extends Attrs<HTMLElementTagNameMap["sl-progress-bar"]> {
     value?: NRO<number>
     indeterminate?: NRO<boolean>
     label?: NRO<string>

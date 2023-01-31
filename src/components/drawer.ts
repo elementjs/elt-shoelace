@@ -10,7 +10,7 @@ export type {}
 (SlDrawer.prototype as any)[sym_sl_elt] = "sl-drawer"
 
 declare module "elt" {
-  interface attrs_sl_drawer extends Attrs<HTMLElementTagNameMap["sl-drawer"]>, Global {
+  interface attrs_sl_drawer extends Attrs<HTMLElementTagNameMap["sl-drawer"]> {
     open?: NRO<boolean>
     label?: NRO<string>
     placement?: NRO<'top' | 'end' | 'bottom' | 'start'>

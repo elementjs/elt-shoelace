@@ -10,7 +10,7 @@ export type {}
 (SlVisuallyHidden.prototype as any)[sym_sl_elt] = "sl-visually-hidden"
 
 declare module "elt" {
-  interface attrs_sl_visually_hidden extends Attrs<HTMLElementTagNameMap["sl-visually-hidden"]>, Global {
+  interface attrs_sl_visually_hidden extends Attrs<HTMLElementTagNameMap["sl-visually-hidden"]> {
   }
 
   interface ElementMap {

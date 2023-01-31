@@ -10,7 +10,7 @@ export type {}
 (SlMutationObserver.prototype as any)[sym_sl_elt] = "sl-mutation-observer"
 
 declare module "elt" {
-  interface attrs_sl_mutation_observer extends Attrs<HTMLElementTagNameMap["sl-mutation-observer"]>, Global {
+  interface attrs_sl_mutation_observer extends Attrs<HTMLElementTagNameMap["sl-mutation-observer"]> {
     attr?: NRO<string>
     "attr-old-value"?: NRO<boolean>
     "char-data"?: NRO<boolean>

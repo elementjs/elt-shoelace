@@ -10,7 +10,7 @@ export type {}
 (SlOption.prototype as any)[sym_sl_elt] = "sl-option"
 
 declare module "elt" {
-  interface attrs_sl_option extends Attrs<HTMLElementTagNameMap["sl-option"]>, Global {
+  interface attrs_sl_option extends Attrs<HTMLElementTagNameMap["sl-option"]> {
     value?: NRO<string>
     disabled?: NRO<boolean>
   }

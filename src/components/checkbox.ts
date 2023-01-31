@@ -10,7 +10,7 @@ export type {}
 (SlCheckbox.prototype as any)[sym_sl_elt] = "sl-checkbox"
 
 declare module "elt" {
-  interface attrs_sl_checkbox extends Attrs<HTMLElementTagNameMap["sl-checkbox"]>, Global {
+  interface attrs_sl_checkbox extends Attrs<HTMLElementTagNameMap["sl-checkbox"]> {
     title?: NRO<string>
     name?: NRO<string>
     value?: NRO<string>

@@ -10,7 +10,7 @@ export type {}
 (SlFormatNumber.prototype as any)[sym_sl_elt] = "sl-format-number"
 
 declare module "elt" {
-  interface attrs_sl_format_number extends Attrs<HTMLElementTagNameMap["sl-format-number"]>, Global {
+  interface attrs_sl_format_number extends Attrs<HTMLElementTagNameMap["sl-format-number"]> {
     value?: NRO<number>
     type?: NRO<'currency' | 'decimal' | 'percent'>
     "no-grouping"?: NRO<boolean>

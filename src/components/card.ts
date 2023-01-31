@@ -10,7 +10,7 @@ export type {}
 (SlCard.prototype as any)[sym_sl_elt] = "sl-card"
 
 declare module "elt" {
-  interface attrs_sl_card extends Attrs<HTMLElementTagNameMap["sl-card"]>, Global {
+  interface attrs_sl_card extends Attrs<HTMLElementTagNameMap["sl-card"]> {
   }
 
   interface ElementMap {

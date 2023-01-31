@@ -10,7 +10,7 @@ export type {}
 (SlSelect.prototype as any)[sym_sl_elt] = "sl-select"
 
 declare module "elt" {
-  interface attrs_sl_select extends Attrs<HTMLElementTagNameMap["sl-select"]>, Global {
+  interface attrs_sl_select extends Attrs<HTMLElementTagNameMap["sl-select"]> {
     name?: NRO<string>
     value?: NRO<string | string[]>
     size?: NRO<'small' | 'medium' | 'large'>

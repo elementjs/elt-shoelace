@@ -10,10 +10,9 @@
   "type": "module",
   "scripts": {
     "build:js": "tsc | wtsc",
-    "build:other": "npm run build:esbuild && npm run build:namespace",
-    "build": "npm run build:js && npm run build:esbuild ",
+    "build": "npm run build:js",
     "prepublish": "npm run build",
-    "watch": "tsc -w --preserveWatchOutput | wtsc npm run build:other"
+    "watch": "tsc -w --preserveWatchOutput | wtsc npm run build"
   },
   "devDependencies": {
     "esbuild": "^0.15.7",

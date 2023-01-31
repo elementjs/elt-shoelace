@@ -10,7 +10,7 @@ export type {}
 (SlFormatDate.prototype as any)[sym_sl_elt] = "sl-format-date"
 
 declare module "elt" {
-  interface attrs_sl_format_date extends Attrs<HTMLElementTagNameMap["sl-format-date"]>, Global {
+  interface attrs_sl_format_date extends Attrs<HTMLElementTagNameMap["sl-format-date"]> {
     date?: NRO<Date | string>
     weekday?: NRO<'narrow' | 'short' | 'long'>
     era?: NRO<'narrow' | 'short' | 'long'>

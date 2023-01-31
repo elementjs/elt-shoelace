@@ -10,7 +10,7 @@ export type {}
 (SlButton.prototype as any)[sym_sl_elt] = "sl-button"
 
 declare module "elt" {
-  interface attrs_sl_button extends Attrs<HTMLElementTagNameMap["sl-button"]>, Global {
+  interface attrs_sl_button extends Attrs<HTMLElementTagNameMap["sl-button"]> {
     title?: NRO<string>
     variant?: NRO<'default' | 'primary' | 'success' | 'neutral' | 'warning' | 'danger' | 'text'>
     size?: NRO<'small' | 'medium' | 'large'>

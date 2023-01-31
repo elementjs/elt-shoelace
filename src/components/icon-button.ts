@@ -10,7 +10,7 @@ export type {}
 (SlIconButton.prototype as any)[sym_sl_elt] = "sl-icon-button"
 
 declare module "elt" {
-  interface attrs_sl_icon_button extends Attrs<HTMLElementTagNameMap["sl-icon-button"]>, Global {
+  interface attrs_sl_icon_button extends Attrs<HTMLElementTagNameMap["sl-icon-button"]> {
     name?: NRO<string | undefined>
     library?: NRO<string | undefined>
     src?: NRO<string | undefined>

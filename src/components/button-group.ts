@@ -10,7 +10,7 @@ export type {}
 (SlButtonGroup.prototype as any)[sym_sl_elt] = "sl-button-group"
 
 declare module "elt" {
-  interface attrs_sl_button_group extends Attrs<HTMLElementTagNameMap["sl-button-group"]>, Global {
+  interface attrs_sl_button_group extends Attrs<HTMLElementTagNameMap["sl-button-group"]> {
     label?: NRO<string>
   }
 

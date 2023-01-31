@@ -10,7 +10,7 @@ export type {}
 (SlDetails.prototype as any)[sym_sl_elt] = "sl-details"
 
 declare module "elt" {
-  interface attrs_sl_details extends Attrs<HTMLElementTagNameMap["sl-details"]>, Global {
+  interface attrs_sl_details extends Attrs<HTMLElementTagNameMap["sl-details"]> {
     open?: NRO<boolean>
     summary?: NRO<string>
     disabled?: NRO<boolean>

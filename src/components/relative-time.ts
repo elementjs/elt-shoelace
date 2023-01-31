@@ -10,7 +10,7 @@ export type {}
 (SlRelativeTime.prototype as any)[sym_sl_elt] = "sl-relative-time"
 
 declare module "elt" {
-  interface attrs_sl_relative_time extends Attrs<HTMLElementTagNameMap["sl-relative-time"]>, Global {
+  interface attrs_sl_relative_time extends Attrs<HTMLElementTagNameMap["sl-relative-time"]> {
     date?: NRO<Date | string>
     format?: NRO<'long' | 'short' | 'narrow'>
     numeric?: NRO<'always' | 'auto'>

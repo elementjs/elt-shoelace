@@ -10,7 +10,7 @@ export type {}
 (SlAnimation.prototype as any)[sym_sl_elt] = "sl-animation"
 
 declare module "elt" {
-  interface attrs_sl_animation extends Attrs<HTMLElementTagNameMap["sl-animation"]>, Global {
+  interface attrs_sl_animation extends Attrs<HTMLElementTagNameMap["sl-animation"]> {
     name?: NRO<string>
     play?: NRO<boolean>
     delay?: NRO<number>

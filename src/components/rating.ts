@@ -10,7 +10,7 @@ export type {}
 (SlRating.prototype as any)[sym_sl_elt] = "sl-rating"
 
 declare module "elt" {
-  interface attrs_sl_rating extends Attrs<HTMLElementTagNameMap["sl-rating"]>, Global {
+  interface attrs_sl_rating extends Attrs<HTMLElementTagNameMap["sl-rating"]> {
     label?: NRO<string>
     value?: NRO<number>
     max?: NRO<number>

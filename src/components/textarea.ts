@@ -10,7 +10,7 @@ export type {}
 (SlTextarea.prototype as any)[sym_sl_elt] = "sl-textarea"
 
 declare module "elt" {
-  interface attrs_sl_textarea extends Attrs<HTMLElementTagNameMap["sl-textarea"]>, Global {
+  interface attrs_sl_textarea extends Attrs<HTMLElementTagNameMap["sl-textarea"]> {
     title?: NRO<string>
     name?: NRO<string>
     value?: NRO<string>

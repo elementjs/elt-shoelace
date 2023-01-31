@@ -10,7 +10,7 @@ export type {}
 (SlSkeleton.prototype as any)[sym_sl_elt] = "sl-skeleton"
 
 declare module "elt" {
-  interface attrs_sl_skeleton extends Attrs<HTMLElementTagNameMap["sl-skeleton"]>, Global {
+  interface attrs_sl_skeleton extends Attrs<HTMLElementTagNameMap["sl-skeleton"]> {
     effect?: NRO<'pulse' | 'sheen' | 'none'>
   }
 

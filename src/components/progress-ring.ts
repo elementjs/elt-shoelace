@@ -10,7 +10,7 @@ export type {}
 (SlProgressRing.prototype as any)[sym_sl_elt] = "sl-progress-ring"
 
 declare module "elt" {
-  interface attrs_sl_progress_ring extends Attrs<HTMLElementTagNameMap["sl-progress-ring"]>, Global {
+  interface attrs_sl_progress_ring extends Attrs<HTMLElementTagNameMap["sl-progress-ring"]> {
     value?: NRO<number>
     label?: NRO<string>
   }

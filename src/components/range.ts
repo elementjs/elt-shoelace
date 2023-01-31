@@ -10,7 +10,7 @@ export type {}
 (SlRange.prototype as any)[sym_sl_elt] = "sl-range"
 
 declare module "elt" {
-  interface attrs_sl_range extends Attrs<HTMLElementTagNameMap["sl-range"]>, Global {
+  interface attrs_sl_range extends Attrs<HTMLElementTagNameMap["sl-range"]> {
     title?: NRO<string>
     name?: NRO<string>
     value?: NRO<number>

@@ -86,10 +86,10 @@ export function $options<T extends object>(
 /**
  * Binds an observable to a Node
  */
-export function $value(ob: o.RO<number>): (n: { value: number }) => void
-export function $value(ob: o.RO<string>): (n: { value: string }) => void
-export function $value(ob: o.RO<string>): (n: { value: string | string[] }) => void
-export function $value<T>(ob: o.RO<any>): (n: any) => void {
+export function $(ob: o.RO<number>): (n: { value: number }) => void
+export function $(ob: o.RO<string>): (n: { value: string }) => void
+export function $(ob: o.RO<string>): (n: { value: string | string[] }) => void
+export function $<T>(ob: o.RO<any>): (n: any) => void {
   return (node: Node & { value: string }) => {
     // node.value = o.get(ob)
 

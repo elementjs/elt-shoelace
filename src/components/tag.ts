@@ -10,7 +10,7 @@ export type {}
 (SlTag.prototype as any)[sym_sl_elt] = "sl-tag"
 
 declare module "elt" {
-  interface attrs_sl_tag extends Attrs<HTMLElementTagNameMap["sl-tag"]>, Global {
+  interface attrs_sl_tag extends Attrs<HTMLElementTagNameMap["sl-tag"]> {
     variant?: NRO<'primary' | 'success' | 'neutral' | 'warning' | 'danger' | 'text'>
     size?: NRO<'small' | 'medium' | 'large'>
     pill?: NRO<boolean>

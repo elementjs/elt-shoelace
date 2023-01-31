@@ -10,7 +10,7 @@ export type {}
 (SlSpinner.prototype as any)[sym_sl_elt] = "sl-spinner"
 
 declare module "elt" {
-  interface attrs_sl_spinner extends Attrs<HTMLElementTagNameMap["sl-spinner"]>, Global {
+  interface attrs_sl_spinner extends Attrs<HTMLElementTagNameMap["sl-spinner"]> {
   }
 
   interface ElementMap {

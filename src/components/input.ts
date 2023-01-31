@@ -10,7 +10,7 @@ export type {}
 (SlInput.prototype as any)[sym_sl_elt] = "sl-input"
 
 declare module "elt" {
-  interface attrs_sl_input extends Attrs<HTMLElementTagNameMap["sl-input"]>, Global {
+  interface attrs_sl_input extends Attrs<HTMLElementTagNameMap["sl-input"]> {
     title?: NRO<string>
     type?: NRO<'date' | 'datetime-local' | 'email' | 'number' | 'password' | 'search' | 'tel' | 'text' | 'time' | 'url'>
     name?: NRO<string>

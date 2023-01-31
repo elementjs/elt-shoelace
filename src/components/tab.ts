@@ -10,7 +10,7 @@ export type {}
 (SlTab.prototype as any)[sym_sl_elt] = "sl-tab"
 
 declare module "elt" {
-  interface attrs_sl_tab extends Attrs<HTMLElementTagNameMap["sl-tab"]>, Global {
+  interface attrs_sl_tab extends Attrs<HTMLElementTagNameMap["sl-tab"]> {
     panel?: NRO<string>
     active?: NRO<boolean>
     closable?: NRO<boolean>

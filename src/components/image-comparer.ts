@@ -10,7 +10,7 @@ export type {}
 (SlImageComparer.prototype as any)[sym_sl_elt] = "sl-image-comparer"
 
 declare module "elt" {
-  interface attrs_sl_image_comparer extends Attrs<HTMLElementTagNameMap["sl-image-comparer"]>, Global {
+  interface attrs_sl_image_comparer extends Attrs<HTMLElementTagNameMap["sl-image-comparer"]> {
     position?: NRO<number>
   }
 

@@ -10,7 +10,7 @@ export type {}
 (SlRadio.prototype as any)[sym_sl_elt] = "sl-radio"
 
 declare module "elt" {
-  interface attrs_sl_radio extends Attrs<HTMLElementTagNameMap["sl-radio"]>, Global {
+  interface attrs_sl_radio extends Attrs<HTMLElementTagNameMap["sl-radio"]> {
     value?: NRO<string>
     size?: NRO<'small' | 'medium' | 'large'>
     disabled?: NRO<boolean>
