@@ -1,0 +1,7 @@
+cssval:
+  - var(--sl-[spacing]-[3x-small, 2x-small, x-small, small, medium, large, x-large, 2x-large, 3x-large, 4x-large])
+  - var(--sl-[color]-[neutral]-[0,1000])
+  - var(--sl-[color]-[primary, success, warning, danger, neutral, gray, red, orange, amber, yellow, lime, green, emerald, teal, cyan, sky, blue, indigo, violet, purple, fuchsia, pink, rose]-[50,100,200,300,400,500,600,700,800,900,950])
+  - var(--sl-[transition]-[x-slow, slow, medium, fast, x-fast])
+  - var(--sl-[border-radius]-[small, medium, large, x-large, circle, pill])
+  - var(--sl-[shadow]-[x-small, small, medium, large, x-large])

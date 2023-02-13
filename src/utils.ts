@@ -1,3 +1,4 @@
+import { $click, } from "elt"
 
 export class Future<T> implements Promise<T> {
   #promise!: Promise<T>
@@ -21,6 +22,15 @@ export class Future<T> implements Promise<T> {
     if (this.#resolved) return
     this.#resolved = true
     this.#resolve(value)
+  }
+
+  $clickResolve<N extends HTMLElement | SVGElement>(fn: (ev: MouseEvent & {currentTarget: N}) => T): (e: N) => void {
+    return (e: N) => {
+      $click<N>(ev => {
+        const res = fn(ev)
+        this.resolve(res)
+      })(e)
+    }
   }
 
   get [Symbol.toStringTag]() {
