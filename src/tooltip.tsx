@@ -1,6 +1,6 @@
 
 import { node_on_inserted, node_on_removed, Renderable, o, e } from "elt"
-import { animate, stop_animations } from "./animation"
+import { animate, animate_hide, animate_show, stop_animations } from "./animation"
 import { SlPopup } from "./components/popup"
 
 import "./tooltip.css"
@@ -169,13 +169,3 @@ export function $tooltip(ct: Content, options: TooltipOptions = {}) {
   const tm = new TooltipManager(ct, options)
   return tm.$decorate
 }
-
-export const animate_show: Keyframe[] = [
-  { opacity: 0, scale: 0.8, },
-  { opacity: 1, scale: 1 }
-]
-
-export const animate_hide: Keyframe[] = [
-  { opacity: 1, scale: 1 },
-  { opacity: 0, scale: 0.8 }
-]

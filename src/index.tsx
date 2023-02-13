@@ -3,6 +3,7 @@ import { Future } from "./utils"
 import { SlElement } from "./components/_monkey"
 export * from "./css"
 import "./base"
+import { animate, animate_hide, animate_show, stop_animations } from "./animation"
 
 /** Helper function to not have to type everything */
 function is_show_hide(node: Node): node is Node & { show(): void, hide(): void } {
@@ -157,11 +158,16 @@ export type PopupResolution<T> =
 const popups = new Set<Element>()
 const popups_futures = new WeakMap<Element, Future<any | undefined>>()
 
-function _popup_resolve(p: Element) {
+async function _popup_resolve(p: Element) {
   popups.delete(p)
   popups_futures.delete(p)
-  p.remove()
   popups_futures.get(p)?.resolve(sym_popup_closed)
+  const _p = p as SlElement
+  if (_p.tagName === "SL-POPUP") {
+    await stop_animations(_p.popup)
+    await animate(_p.popup, animate_hide, { duration: 150 })
+  }
+  p.remove()
 }
 
 function _close_popups() {
@@ -231,13 +237,15 @@ export function popup<T>(anchor: Element, fn: (fut: Future<T | typeof sym_popup_
   popup.active = true
   popup.style.setProperty("--arrow-color", "var(--sl-color-neutral-200)")
 
-  setTimeout(() => {
+  setTimeout(async () => {
     if (popups.size === 0) {
       doc.addEventListener("click", _eval_popup_click)
     }
     doc.body.appendChild(popup_root)
     popups.add(popup_root)
     popups_futures.set(popup_root, fut)
+    await popup.updateComplete
+    animate(popup.popup, animate_show, { duration: 150 })
   })
 }
 

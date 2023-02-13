@@ -34,3 +34,14 @@ export function animate(el: HTMLElement, keyframes: Keyframe[], options?: Keyfra
     animation.addEventListener('finish', resolve, { once: true });
   })
 }
+
+
+export const animate_show: Keyframe[] = [
+  { opacity: 0, scale: 0.6, },
+  { opacity: 1, scale: 1 }
+]
+
+export const animate_hide: Keyframe[] = [
+  { opacity: 1, scale: 1 },
+  { opacity: 0, scale: 0.6 }
+]
