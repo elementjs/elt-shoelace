@@ -58,7 +58,7 @@ class TooltipManager {
   node: Element | null = null
 
   async show() {
-    if (!this.node) throw new Error(`$tooltip needs an anchor node`)
+    if (!this.node) return
     if (this.o_open.get()) return
 
     this.o_open.set(true)

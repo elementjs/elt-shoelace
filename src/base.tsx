@@ -218,5 +218,9 @@ sl-input::part(form-control-label) {
   font-weight: 500;
 }
 
+sl-button::part(base), sl-input::part(base), sl-select::part(combobox), sl-select::part(listbox), sl-menu {
+  border-radius: .25em .5em;
+}
+
 `}
 </style>)

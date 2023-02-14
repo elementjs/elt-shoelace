@@ -1,4 +1,4 @@
-import { node_add_event_listener, o, node_observe, } from "elt"
+import { node_add_event_listener, o, node_observe, Renderable, } from "elt"
 import { Future } from "./utils"
 import { SlElement } from "./components/_monkey"
 export * from "./css"
@@ -63,83 +63,155 @@ export function $data(val: o.RO<any>): (node: Node) => void {
 /**
  * Binds an observable to a Node
  */
-export function $model(ob: o.RO<boolean>): (n: { checked: boolean }) => void
+export function $model(ob: o.RO<boolean> | o.RO<boolean | null>): (n: { checked: boolean }) => void
 export function $model(ob: o.RO<number>): (n: { value: number }) => void
 export function $model(ob: o.RO<string>): (n: { value: string }) => void
 export function $model(ob: o.RO<string>): (n: { value: string | string[] }) => void
-export function $model<T>(ob: o.RO<any>): (n: any) => void {
+export function $model<T>(ob: o.RO<T>): { using(fn: ($value: ((v: o.RO<T>) => ((n: Node) => void))) => Renderable): (n: Node) => void }
+export function $model<T>(ob: o.RO<any>): any {
 
-  function res(node: SlElement & { value: string }) {
-    // node.value = o.get(ob)
+  let value_map = new WeakMap()
+  let value_map_used = false
+  let _last_value = 0
+
+  function bind(node: SlElement & { value: string }) {
+
+    const lock = o.exclusive_lock()
+    node_observe(node, ob, (newval) => {
+      lock(() => {
+        switch (node.tagName) {
+          case "SL-SWITCH":
+          case "SL-CHECKBOX":
+          case "SL-MENU-ITEM":
+            node.checked = newval
+            break
+          case "SL-SELECT": {
+            const set = new Set(Array.isArray(newval) ? newval : [newval])
+            let v: string[] = []
+            let iter: Element | null = node.firstElementChild
+            while (iter) {
+              let _ = iter as SlElement
+              if (_.tagName === "SL-OPTION") {
+                _.selected = set.has(value_map_used ? value_map.get(_) : _.value)
+                if (_.selected) v.push(_.value)
+              }
+              iter = iter.nextElementSibling as unknown as SlElement
+            }
+            node.value = (node.multiple ? v : v[0]) as any
+            break
+          }
+          case "SL-TREE": {
+            const set = new Set(Array.isArray(newval) ? newval : [newval])
+            iterate(node)
+            function iterate(node: Element) {
+              let iter = node.firstElementChild
+              while (iter) {
+                let _node = iter as SlElement
+                if (value_map.has(iter) && _node.tagName === "SL-TREE-ITEM") {
+                  _node.selected = set.has(value_map.get(iter)!)
+                } else {
+                  if (iter.firstElementChild) iterate(iter.firstElementChild)
+                }
+                iter = iter.nextElementSibling
+              }
+            }
+            break
+          }
+          default:
+            if (node.tagName === "SL-INPUT" && node.type === "number") {
+              node.valueAsNumber = newval || null
+            } else {
+              node.value = newval
+            }
+            break
+        }
+      })
+    }, undefined, true)
+
     if (ob instanceof o.Observable) {
-      const lock = o.exclusive_lock()
-      node_observe(node, ob, (newval) => {
-        lock(() => {
-          switch (node.tagName) {
-            case "SL-SWITCH":
-            case "SL-CHECKBOX":
-              node.checked = newval
-              break
-            default:
-              if (node.tagName === "SL-INPUT" && node.type === "number") {
-                node.valueAsNumber = newval || null
-              } else {
-                node.value = newval
-              }
-              break
-          }
-        })
-      }, undefined, true)
+      if (node.tagName === "SL-TREE") {
+        node_add_event_listener(node, "sl-selection-change", ev => {
+          if (node.tagName !== "SL-TREE") return
+          const selection = (ev as unknown as CustomEvent<{ selection: Node[] }>).detail.selection
 
-      node_add_event_listener(node, "sl-input", () => {
-        lock(() => {
-          let nval
-          switch (node.tagName) {
-            case "SL-SWITCH":
-            case "SL-CHECKBOX":
-              nval = node.checked
-              break
-            case "SL-INPUT":
-              if (node.tagName === "SL-INPUT" && node.type === "number") {
-                nval = node.valueAsNumber
-              } else {
+          let values = !value_map_used ? selection : selection.map(n => {
+            return value_map.get(n)
+          }).filter(v => v !== undefined)
+
+          lock(() => {
+            ob.set(node.selection === "multiple" ? values : values[0])
+          })
+        })
+      } else {
+        node_add_event_listener(node, "sl-input", () => {
+          lock(() => {
+            let nval
+            switch (node.tagName) {
+              case "SL-SWITCH":
+              case "SL-CHECKBOX":
+              case "SL-MENU-ITEM":
+                nval = node.checked
+                break
+              case "SL-INPUT":
+                if (node.tagName === "SL-INPUT" && node.type === "number") {
+                  nval = node.valueAsNumber
+                } else {
+                  nval = node.value
+                }
+                break
+              case "SL-SELECT":
+                // $model is only for single value.
+                if (value_map_used) {
+                  let val = Array.isArray(node.value) ? node.value : [node.value]
+                  const res = val.map(v => value_map.get(node.querySelector(`sl-option[value=${v}]`)!))
+                  ob.set(node.multiple ? res : res[0])
+                } else {
+                  if (!node.multiple) {
+                    if (!value_map_used) {
+                      ob.set(Array.isArray(nval) ? nval[0] : nval)
+                    }
+                  } else {
+                    ob.set(Array.isArray(nval) ? nval : [nval])
+                  }
+                }
+                return
+              default:
                 nval = node.value
+                break
               }
-            default:
-              nval = node.value
-              break
+              ob.set(Array.isArray(nval) ? nval[0] : nval)
+          })
+        })
+      }
+    }
+  }
+
+  bind.using = function (fn: ($value: (v: o.RO<T>) => ((n: Node) => void)) => Renderable) {
+    return function (node: Node) {
+      let res = fn(function (val) {
+        return function (node) {
+          value_map_used = true
+          if (val instanceof o.Observable) {
+            node_observe(node, val, nval => {
+              value_map.set(node, nval)
+            }, undefined, true)
+          } else {
+            value_map.set(node, val)
           }
-          // $model is only for single value.
-          ob.set(Array.isArray(nval) ? nval[0] : nval)
-        })
+          const _ = node as SlElement
+          if (_.tagName === "SL-OPTION") {
+            const vstr = `v${_last_value++}`
+            _.value = vstr
+          }
+          // create a string value
+        }
       })
+      bind(node as any)
+      return res
     }
   }
 
-  res.using = function (elts: o.RO<Iterable<T>>, fn: (elt: T) => Node) {
-    return function (_node: Element) {
-      const node = _node as SlElement
-      const lock = o.exclusive_lock()
-
-      node_observe(node, ob, val => {
-        lock(() => {
-          // This is where we find out which options or trees are marked as selected ?
-          // or is it done downwards ?
-        })
-      })
-
-      //
-      node_add_event_listener(node, "sl-input", () => {
-
-      })
-
-      return o.tf(elts, elts => {
-
-      })
-    }
-  }
-
-  return res
+  return bind
 }
 
 
