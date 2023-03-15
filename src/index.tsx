@@ -1,4 +1,4 @@
-import { node_add_event_listener, o, node_observe, Renderable, node_remove, } from "elt"
+import { node_add_event_listener, o, node_observe, Renderable, node_remove, node_append, } from "elt"
 import { Future } from "./utils"
 import { SlElement } from "./components/_monkey"
 export * from "./css"
@@ -296,7 +296,8 @@ export function popup<T>(anchor: Element, fn: (fut: Future<T | typeof sym_popup_
     if (popups.size === 0) {
       doc.addEventListener("click", _eval_popup_click)
     }
-    doc.body.appendChild(popup_root)
+    node_append(anchor.parentElement!, popup_root, anchor.nextSibling)
+    // doc.body.appendChild(popup_root)
     popups.add(popup_root)
     popups_futures.set(popup_root, fut)
     await popup.updateComplete
