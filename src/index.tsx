@@ -1,4 +1,4 @@
-import { node_add_event_listener, o, node_observe, Renderable, } from "elt"
+import { node_add_event_listener, o, node_observe, Renderable, node_remove, } from "elt"
 import { Future } from "./utils"
 import { SlElement } from "./components/_monkey"
 export * from "./css"
@@ -22,7 +22,7 @@ export function show<T>(fn: (future: Future<T | undefined>) => Node, container =
     throw new Error(`show() expects sl-dialog, sl-drawer or anything that has .show() and .hide() and the "sl-after-hide" event`)
 
   node_add_event_listener(res, "sl-after-hide", () => {
-    container.removeChild(res)
+    node_remove(res)
     fut.resolve(undefined)
   })
 
@@ -48,7 +48,7 @@ const wm_data = new WeakMap<Node, any>()
  */
 export function $data(val: o.RO<any>): (node: Node) => void {
   return node => {
-    node_observe(node, val, nval => wm_data.set(node, nval), undefined, true)
+    node_observe(node, val, nval => wm_data.set(node, nval), { immediate: true })
   }
 }
 
@@ -65,8 +65,7 @@ export function $data(val: o.RO<any>): (node: Node) => void {
  */
 export function $model(ob: o.RO<boolean> | o.RO<boolean | null>): (n: { checked: boolean }) => void
 export function $model(ob: o.RO<number>): (n: { value: number }) => void
-export function $model(ob: o.RO<string>): (n: { value: string }) => void
-export function $model(ob: o.RO<string>): (n: { value: string | string[] }) => void
+export function $model(ob: o.RO<string>): ((n: { value: string | string[]}) => void) | ((n: { value: string }) => void)
 export function $model<T>(ob: o.RO<T>): { using(fn: ($value: ((v: o.RO<T>) => ((n: Node) => void))) => Renderable): (n: Node) => void }
 export function $model<T>(ob: o.RO<any>): any {
 
@@ -86,18 +85,10 @@ export function $model<T>(ob: o.RO<any>): any {
             node.checked = newval
             break
           case "SL-SELECT": {
-            const set = new Set(Array.isArray(newval) ? newval : [newval])
-            let v: string[] = []
-            let iter: Element | null = node.firstElementChild
-            while (iter) {
-              let _ = iter as SlElement
-              if (_.tagName === "SL-OPTION") {
-                _.selected = set.has(value_map_used ? value_map.get(_) : _.value)
-                if (_.selected) v.push(_.value)
-              }
-              iter = iter.nextElementSibling as unknown as SlElement
-            }
-            node.value = (node.multiple ? v : v[0]) as any
+            node.value = (node.multiple ?
+              (Array.isArray(newval) ? newval : [newval] )
+              : newval
+            ) as any
             break
           }
           case "SL-TREE": {
@@ -126,7 +117,7 @@ export function $model<T>(ob: o.RO<any>): any {
             break
         }
       })
-    }, undefined, true)
+    }, { immediate: true })
 
     if (ob instanceof o.Observable) {
       if (node.tagName === "SL-TREE") {
@@ -160,19 +151,11 @@ export function $model<T>(ob: o.RO<any>): any {
                 }
                 break
               case "SL-SELECT":
-                // $model is only for single value.
-                if (value_map_used) {
-                  let val = Array.isArray(node.value) ? node.value : [node.value]
-                  const res = val.map(v => value_map.get(node.querySelector(`sl-option[value=${v}]`)!))
-                  ob.set(node.multiple ? res : res[0])
+                nval = node.value
+                if (node.multiple) {
+                  ob.set(Array.isArray(nval) ? nval : [nval])
                 } else {
-                  if (!node.multiple) {
-                    if (!value_map_used) {
-                      ob.set(Array.isArray(nval) ? nval[0] : nval)
-                    }
-                  } else {
-                    ob.set(Array.isArray(nval) ? nval : [nval])
-                  }
+                  ob.set(nval)
                 }
                 return
               default:
@@ -194,7 +177,7 @@ export function $model<T>(ob: o.RO<any>): any {
           if (val instanceof o.Observable) {
             node_observe(node, val, nval => {
               value_map.set(node, nval)
-            }, undefined, true)
+            }, { immediate: true })
           } else {
             value_map.set(node, val)
           }

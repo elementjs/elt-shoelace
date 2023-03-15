@@ -1,6 +1,3 @@
-import "@shoelace-style/shoelace/dist/themes/light.css"
-import "@shoelace-style/shoelace/dist/themes/dark.css"
-
 import { e } from "elt"
 
 document.head.appendChild(<style>
@@ -181,6 +178,8 @@ html {
   box-sizing: border-box;
 }
 
+/* */
+
 body {
   margin: 0;
   font-family: var(--sl-font-sans);
@@ -216,10 +215,6 @@ sl-details::part(header) {
 sl-input::part(form-control-label) {
   font-size: 0.8em;
   font-weight: 500;
-}
-
-sl-button::part(base), sl-input::part(base), sl-select::part(combobox), sl-select::part(listbox), sl-menu {
-  border-radius: .25em .5em;
 }
 
 `}
