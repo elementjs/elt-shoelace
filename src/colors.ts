@@ -12,6 +12,7 @@ export class BaseColortheme {
 
   p(name: string, value: string) {
     (this.baseprops as any)[name] = value
+    return `var(${name})`
   }
 
   borderRadiusSmall = this.p("--sl-border-radius-small", `0.1875rem`)
@@ -234,7 +235,7 @@ export class ColorTheme<T extends ColorTheme.Spec, K extends string = "50" | "10
           k,
           l <= 600 ?
             interpolate(bg, colors[k], l / 600)
-            : interpolate(colors[k], fg, (l - 400) / 400)
+            : interpolate(colors[k], fg, (l - 600) / 400)
           , level, props_to_primary)
       }
 

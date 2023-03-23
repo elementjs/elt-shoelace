@@ -1,7 +1,6 @@
-import { e } from "elt"
+import { raw as css } from "osun"
 
-document.head.appendChild(<style>
-{`
+css`
 html {
   line-height: 1.15; /* 1 */
   -webkit-text-size-adjust: 100%; /* 2 */
@@ -74,6 +73,8 @@ textarea {
   font-size: 100%; /* 1 */
   line-height: 1.15; /* 1 */
   margin: 0; /* 2 */
+  background-color: transparent;
+  -webkit-appearance: none;
 }
 button,
 input { /* 1 */
@@ -83,7 +84,7 @@ button,
 select { /* 1 */
   text-transform: none;
 }
-utton,
+button,
 [type="button"],
 [type="reset"],
 [type="submit"] {
@@ -217,5 +218,5 @@ sl-input::part(form-control-label) {
   font-weight: 500;
 }
 
-`}
-</style>)
+`
+console.log("??")

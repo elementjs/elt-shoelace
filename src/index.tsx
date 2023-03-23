@@ -1,14 +1,37 @@
-import { node_add_event_listener, o, node_observe, Renderable, node_remove, node_append, } from "elt"
+import { node_add_event_listener, o, node_observe, Renderable, node_remove, node_append, Repeat, e, $click, attrs_sl_button, $scrollable, } from "elt"
 import { Future } from "./utils"
 import { SlElement } from "./components/_monkey"
 export * from "./css"
+import "./layout"
 import "./base"
 import { animate, animate_hide, animate_show, stop_animations } from "./animation"
+import { style, } from "osun"
 
 /** Helper function to not have to type everything */
 function is_show_hide(node: Node): node is Node & { show(): void, hide(): void } {
   const _node = node as any
   return typeof _node?.show === "function" && typeof _node?.hide === "function"
+}
+
+export function modal(opts: {
+  title: Renderable,
+  text: Renderable,
+  agree: Renderable,
+  disagree?: Renderable,
+}): Promise<boolean> {
+  return show(fut => <sl-dialog>
+    <span slot="label">{opts.title}</span>
+    {opts.text}
+
+    {!opts.disagree ? null : <sl-button slot="footer">
+      {$click(() => fut.resolve(false))}
+      {opts.disagree}
+    </sl-button>}
+    <sl-button slot="footer" variant="primary">
+      {$click(() => fut.resolve(true))}
+      {opts.agree}
+    </sl-button>
+  </sl-dialog>).then(r => !!r)
 }
 
 /**
@@ -60,18 +83,23 @@ export function $data(val: o.RO<any>): (node: Node) => void {
 // Quid de ce qui est itérable ?
 
 
+export function $options<T>(ob: o.Observable<T>, options: o.RO<T[]>, render: (v: o.ReadonlyObservable<T>) => Renderable) {
+  return Repeat(options as o.ReadonlyObservable<T[]>, (o_opt, idx) => {
+    const res = render(o_opt) as SlElement
+    if (res instanceof Element && res.tagName === "SL-OPTION") {
+      res.value = "" + o.get(idx)
+    }
+    return res
+  })
+}
+
 /**
  * Binds an observable to a Node
  */
 export function $model(ob: o.RO<boolean> | o.RO<boolean | null>): (n: { checked: boolean }) => void
 export function $model(ob: o.RO<number>): (n: { value: number }) => void
-export function $model(ob: o.RO<string>): ((n: { value: string | string[]}) => void) | ((n: { value: string }) => void)
-export function $model<T>(ob: o.RO<T>): { using(fn: ($value: ((v: o.RO<T>) => ((n: Node) => void))) => Renderable): (n: Node) => void }
-export function $model<T>(ob: o.RO<any>): any {
-
-  let value_map = new WeakMap()
-  let value_map_used = false
-  let _last_value = 0
+export function $model(ob: o.RO<string>): ((n: { readonly value: string | string[]}) => void )
+export function $model(ob: o.RO<any>): any {
 
   function bind(node: SlElement & { value: string }) {
 
@@ -92,20 +120,6 @@ export function $model<T>(ob: o.RO<any>): any {
             break
           }
           case "SL-TREE": {
-            const set = new Set(Array.isArray(newval) ? newval : [newval])
-            iterate(node)
-            function iterate(node: Element) {
-              let iter = node.firstElementChild
-              while (iter) {
-                let _node = iter as SlElement
-                if (value_map.has(iter) && _node.tagName === "SL-TREE-ITEM") {
-                  _node.selected = set.has(value_map.get(iter)!)
-                } else {
-                  if (iter.firstElementChild) iterate(iter.firstElementChild)
-                }
-                iter = iter.nextElementSibling
-              }
-            }
             break
           }
           default:
@@ -121,18 +135,7 @@ export function $model<T>(ob: o.RO<any>): any {
 
     if (ob instanceof o.Observable) {
       if (node.tagName === "SL-TREE") {
-        node_add_event_listener(node, "sl-selection-change", ev => {
-          if (node.tagName !== "SL-TREE") return
-          const selection = (ev as unknown as CustomEvent<{ selection: Node[] }>).detail.selection
-
-          let values = !value_map_used ? selection : selection.map(n => {
-            return value_map.get(n)
-          }).filter(v => v !== undefined)
-
-          lock(() => {
-            ob.set(node.selection === "multiple" ? values : values[0])
-          })
-        })
+        // FIXME
       } else {
         node_add_event_listener(node, "sl-input", () => {
           lock(() => {
@@ -166,31 +169,6 @@ export function $model<T>(ob: o.RO<any>): any {
           })
         })
       }
-    }
-  }
-
-  bind.using = function (fn: ($value: (v: o.RO<T>) => ((n: Node) => void)) => Renderable) {
-    return function (node: Node) {
-      let res = fn(function (val) {
-        return function (node) {
-          value_map_used = true
-          if (val instanceof o.Observable) {
-            node_observe(node, val, nval => {
-              value_map.set(node, nval)
-            }, { immediate: true })
-          } else {
-            value_map.set(node, val)
-          }
-          const _ = node as SlElement
-          if (_.tagName === "SL-OPTION") {
-            const vstr = `v${_last_value++}`
-            _.value = vstr
-          }
-          // create a string value
-        }
-      })
-      bind(node as any)
-      return res
     }
   }
 
@@ -296,7 +274,9 @@ export function popup<T>(anchor: Element, fn: (fut: Future<T | typeof sym_popup_
     if (popups.size === 0) {
       doc.addEventListener("click", _eval_popup_click)
     }
-    node_append(anchor.parentElement!, popup_root, anchor.nextSibling)
+    // node_append(anchor.parentElement!, popup_root, anchor.nextSibling)
+    node_append(doc.body, popup_root)
+
     // doc.body.appendChild(popup_root)
     popups.add(popup_root)
     popups_futures.set(popup_root, fut)
@@ -306,6 +286,84 @@ export function popup<T>(anchor: Element, fn: (fut: Future<T | typeof sym_popup_
 }
 
 popup.closed = sym_popup_closed
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
+export interface SelectAttributes<T> extends attrs_sl_button {
+	model: o.Observable<T>
+	options: o.RO<Iterable<T>>
+	prelabelfn?: (opt: o.ReadonlyObservable<T>) => Renderable
+	labelfn: (opt: T) => Renderable
+	postlabelfn?: (opt: o.ReadonlyObservable<T>) => Renderable
+	disabled?: o.RO<boolean>
+}
+
+
+export function Select<T>(at: SelectAttributes<T>) {
+  const o_expanded = o(false)
+  const {variant, caret, size, outline} = at
+  const o_opts = o.tf(at.options, opts => Array.isArray(opts) ? opts:  [...opts])
+  const model = at.model
+  const labelfn = at.labelfn
+
+  function show_values() {
+    o_expanded.set(true)
+
+	  popup(btn, fut => {
+      fut.finally(() => o_expanded.set(false))
+      return <sl-popup
+        placement="bottom"
+        flip-fallback-placements="bottom top"
+        flip
+      >
+        <e-flex column class={cls_select_popup}>
+        {$scrollable}
+        {Repeat(o_opts, (opt, i) => <e-flex class={cls_popup_cell} pad="small">
+            &zwnj;
+            {$click(() => {
+              if (o.get(at.disabled)) return
+              var val = o.get(opt)
+              model.set(val)
+              fut.resolve(null)
+            })}
+            {o.tf(opt, val => labelfn(val))}
+          </e-flex>
+        )}
+      </e-flex></sl-popup>
+    })
+  }
+
+
+  const btn = <sl-button {...{variant,caret,size,outline}} >
+
+    {$click(ev => { show_values() })}
+    &zwnj;
+    {model.tf(m => labelfn(m))}
+    <sl-icon class={[cls_expander, {[cls_expander_expanded]: o_expanded}]} library="system" name="chevron-down" slot="suffix"></sl-icon>
+  </sl-button> as HTMLElement
+
+  return btn
+}
+
+const cls_popup_cell = style("select-popup-cell", { })
+cls_popup_cell.hover({
+  background: "var(--sl-color-neutral-100)"
+})
+
+const cls_select_popup = style("select-popup", {
+  padding: "var(--sl-spacing-small) 0px",
+  background: "var(--sl-color-neutral-0)",
+  borderRadius: "var(--sl-input-border-radius-medium)",
+  border: `1px solid var(--sl-color-neutral-300)`,
+})
+const cls_expander = style("expander", {
+  transition: `var(--sl-transition-medium) rotate ease`,
+  rotate: "0deg",
+})
+
+const cls_expander_expanded = style("expanded", { rotate: "180deg" })
+
 
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
