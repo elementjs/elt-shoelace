@@ -1,69 +1,74 @@
 import { raw as css } from "osun"
 
 css`
-html {
-  line-height: 1.15; /* 1 */
-  -webkit-text-size-adjust: 100%; /* 2 */
+/*
+ * https://github.com/jtrost/Complete-CSS-Reset
+*/
+
+/* Displays for HTML 5 */
+article, aside, audio, command, datagrid, details, dialog, embed,
+figcaption, figure, footer, header, hgroup, menu, nav, section, summary,
+video, wbr {
+	display: block;
 }
-body {
-  margin: 0;
+
+bdi, figcaption, keygen, mark, meter, progress, rp, rt, ruby, time {
+	display: inline;
+}
+
+/* Deprecated tags */
+acronym, applet, big, center, dir, font, frame, frameset, noframes, s,
+strike, tt, u, xmp {
+	display: none;
+}
+
+/* Reset styles for all structural tags */
+a, abbr, area, article, aside, audio, b, bdo, blockquote, body, button,
+canvas, caption, cite, code, col, colgroup, command, datalist, dd, del,
+details, dialog, dfn, div, dl, dt, em, embed, fieldset, figure, form,
+h1, h2, h3, h4, h5, h6, head, header, hgroup, hr, html, i, iframe, img,
+input, ins, keygen, kbd, label, legend, li, map, mark, menu, meter, nav,
+noscript, object, ol, optgroup, option, output, p, param, pre, progress,
+q, rp, rt, ruby, samp, section, select, small, span, strong, sub, sup,
+table, tbody, td, textarea, tfoot, th, thead, time, tr, ul, var, video {
+	background: transparent;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	margin: 0;
+	outline: none;
   padding: 0;
-}
-main {
-  display: block;
-}
-h1 {
-  font-size: 2em;
-  margin: 0.67em 0;
-}
-hr {
-  box-sizing: content-box; /* 1 */
-  height: 0; /* 1 */
-  overflow: visible; /* 2 */
-}
-pre {
-  font-family: monospace, monospace; /* 1 */
-  font-size: 1em; /* 2 */
-}
-a {
-  background-color: transparent;
-}
-abbr[title] {
-  border-bottom: none; /* 1 */
-  text-decoration: underline; /* 2 */
-  text-decoration: underline dotted; /* 2 */
-}
-b,
-strong {
-  font-weight: bolder;
-}
-code,
-kbd,
-samp {
-  font-family: monospace, monospace; /* 1 */
-  font-size: 1em; /* 2 */
-}
-small {
-  font-size: 80%;
-}
-sub,
-sup {
-  font-size: 75%;
-  line-height: 0;
-  position: relative;
-  vertical-align: baseline;
+  color: currentcolor;
+	text-align: left;
+	text-decoration: none;
+	vertical-align: baseline;
+	z-index: auto;
 }
 
-sub {
-  bottom: -0.25em;
+/* Miscellaneous resets */
+body {
+	line-height: normal;
 }
 
-sup {
-  top: -0.5em;
+ol, ul {
+	list-style: none;
 }
-img {
-  border-style: none;
+
+blockquote, q {
+	quotes: none;
+
 }
+
+blockquote:before, blockquote:after, q:before, q:after {
+	content: '';
+	content: none;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
 button,
 input,
 optgroup,
@@ -189,7 +194,6 @@ body {
   letter-spacing: var(--sl-letter-spacing-normal);
   background-color: var(--sl-color-neutral-0);
   color: var(--sl-color-neutral-900);
-  line-height: var(--sl-line-height-normal);
 }
 
 ::-webkit-scrollbar {
@@ -213,10 +217,18 @@ sl-details::part(header) {
   font-weight: 500;
 }
 
-sl-input::part(form-control-label) {
-  font-size: 0.8em;
-  font-weight: 500;
+:is(e-select, sl-select, sl-input, sl-textarea, sl-button)::part(form-control-label) {
+  font-size: 0.8rem;
+  font-weight: bolder;
+}
+
+sl-dialog::part(header) {
+  font-weight: bolder;
+}
+
+::-moz-selection, ::selection { /* Code for Firefox */
+  color: var(--sl-color-neutral-0) !important;
+  background: var(--sl-color-primary-600) !important;
 }
 
 `
-console.log("??")

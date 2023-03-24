@@ -1,6 +1,6 @@
 import { Renderable, e, If } from "elt"
 import { builder as CSS } from "osun"
-import { show } from "./index"
+import { show } from "./dialog"
 
 import "./components/dialog"
 import "./components/button"
