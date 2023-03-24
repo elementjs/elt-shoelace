@@ -53,7 +53,7 @@ export function Select<T>(at: SelectAttributes<T>) {
   }
 
   return <e-select class={cls_select_outside}>
-    {$shadow(<>
+    {$shadow({ css: select_css }, <>
       <div part="form-control" style={{display: "inline-flex", width: "100%", alignItems: "baseline"}}>
         <div part="form-control-label">
           <slot name="label"></slot>
@@ -68,9 +68,6 @@ export function Select<T>(at: SelectAttributes<T>) {
         <slot name="form-control-help-text"></slot>
       </div>
     </>)}
-    {node => {
-      node.shadowRoot!.adoptedStyleSheets = [...node.shadowRoot!.adoptedStyleSheets, select_css as CSSStyleSheet]
-    }}
     {model.tf(m => labelfn(m))}
   </e-select>
 }
