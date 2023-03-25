@@ -118,4 +118,3 @@ const cls_popup = style("elt-popup")
 cls_popup.part("popup", {
   zIndex: "var(--sl-z-index-dropdown)"
 })
-

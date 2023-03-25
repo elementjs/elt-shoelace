@@ -2,12 +2,11 @@ import { Renderable, attrs_sl_button, o, e, $removed, $scrollable, RepeatScroll,
 import { style } from "osun"
 import { popup } from "./popup"
 
+
 export interface SelectAttributes<T> extends attrs_sl_button {
 	model: o.Observable<T>
 	options: o.RO<Iterable<T>>
-	prelabelfn?: (opt: o.ReadonlyObservable<T>) => Renderable
 	labelfn: (opt: T) => Renderable
-	postlabelfn?: (opt: o.ReadonlyObservable<T>) => Renderable
 	disabled?: o.RO<boolean>
 }
 
