@@ -1,3 +1,5 @@
+export type { SlDialog } from "@shoelace-style/shoelace"
+
 import "./layout"
 import "./base"
 

@@ -49,7 +49,7 @@ export function $model(ob: o.RO<any>, unfocused_fn?: (v: string) => string): any
       })
     }, { immediate: true })
 
-    if (ob instanceof o.Observable) {
+    if (o.is_observable(ob)) {
       if (node.tagName === "SL-TREE") {
         // FIXME
       } else {

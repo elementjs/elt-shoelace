@@ -226,9 +226,11 @@ sl-dialog::part(header) {
   font-weight: bolder;
 }
 
-::-moz-selection, ::selection { /* Code for Firefox */
-  color: var(--sl-color-neutral-0) !important;
-  background: var(--sl-color-primary-600) !important;
+::selection {
+  background: var(--sl-color-primary-100);
 }
 
+::-webkit-selection {
+  background-color: var(--sl-color-primary-100);
+}
 `

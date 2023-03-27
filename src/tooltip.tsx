@@ -1,9 +1,8 @@
 
 import { node_on_inserted, node_on_removed, Renderable, o, e } from "elt"
+import { raw as css } from "osun"
 import { animate, animate_hide, animate_show, stop_animations } from "./animation"
 import { SlPopup } from "./components/popup"
-
-import "./tooltip.css"
 
 export type Content = Renderable | (() => Renderable)
 export interface TooltipOptions {
@@ -169,3 +168,37 @@ export function $tooltip(ct: Content, options: TooltipOptions = {}) {
   const tm = new TooltipManager(ct, options)
   return tm.$decorate
 }
+
+css`
+sl-popup.eltsl-tooltip {
+  --arrow-size: var(--sl-tooltip-arrow-size);
+  --arrow-color: var(--sl-tooltip-background-color);
+}
+
+sl-popup.eltsl-tooltip::part(popup) {
+  border-radius: var(--sl-tooltip-border-radius);
+  background-color: var(--sl-tooltip-background-color);
+  color: var(--sl-tooltip-color);
+  padding: var(--sl-tooltip-padding);
+  font-family: var(--sl-tooltip-font-family);
+  font-weight: var(--sl-tooltip-font-weight);
+  font-size: var(--sl-tooltip-font-size);
+  line-height: var(--sl-tooltip-line-height);
+}
+
+sl-popup[placement^='top']::part(popup) {
+  transform-origin: bottom;
+}
+
+sl-popup[placement^='bottom']::part(popup) {
+  transform-origin: top;
+}
+
+sl-popup[placement^='left']::part(popup) {
+  transform-origin: right;
+}
+
+sl-popup[placement^='right']::part(popup) {
+  transform-origin: left;
+}
+`
