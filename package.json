@@ -8,6 +8,7 @@
   "typings": "./lib/index.d.ts",
   "types": "./lib/index.d.ts",
   "type": "module",
+  "files": ["./lib"],
   "scripts": {
     "build:js": "tsc | wtsc",
     "build": "npm run build:js",
