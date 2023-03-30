@@ -1,4 +1,4 @@
-import { $click, Renderable, e, node_add_event_listener, node_remove } from "elt"
+import { $click, Renderable, e, node_add_event_listener, node_append, node_remove } from "elt"
 import { Future } from "./utils"
 
 
@@ -44,7 +44,8 @@ export function show<T>(fn: (future: Future<T | undefined>) => Node, container =
     fut.resolve(undefined)
   })
 
-  container.appendChild(res)
+  node_append(container, res)
+  // container.appendChild(res)
 
   if (typeof res.show === "function") {
     requestAnimationFrame(() => {

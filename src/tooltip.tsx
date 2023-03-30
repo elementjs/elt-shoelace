@@ -1,5 +1,5 @@
 
-import { node_on_inserted, node_on_removed, Renderable, o, e } from "elt"
+import { node_on_connected, node_on_disconnected, Renderable, o, e, node_append } from "elt"
 import { raw as css } from "osun"
 import { animate, animate_hide, animate_show, stop_animations } from "./animation"
 import { SlPopup } from "./components/popup"
@@ -63,7 +63,7 @@ class TooltipManager {
     this.o_open.set(true)
     if (this.popup) {
       if (!this.popup.isConnected)
-        this.node.ownerDocument.body.appendChild(this.popup)
+        node_append(this.node.ownerDocument.body, this.popup)
     } else {
       this.popup = <sl-popup
         class="eltsl-tooltip"
@@ -77,7 +77,7 @@ class TooltipManager {
       </sl-popup> as SlPopup
 
       this.popup.anchor = this.node
-      this.node.ownerDocument.body.appendChild(this.popup)
+      node_append(this.node.ownerDocument.body, this.popup)
       this.popup.active = true
     }
 
@@ -159,8 +159,8 @@ class TooltipManager {
   }
 
   $decorate(node: Element) {
-    node_on_inserted(node, () => this.setup(node))
-    node_on_removed(node, () => this.teardown())
+    node_on_connected(node, () => this.setup(node))
+    node_on_disconnected(node, () => this.teardown())
   }
 }
 
