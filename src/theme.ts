@@ -148,6 +148,19 @@ export class BaseColortheme {
   zIndexTooltip = this.p("--sl-z-index-tooltip", `1000`)
 }
 
+
+export type MappedColors<T, K extends string> = {
+  [Key in `${Extract<keyof T, string> | "primary" | "neutral"}${K}` | keyof T | "neutral0" | "neutral1000"]: CssClass & string
+}
+
+
+export interface ThemeColors {
+  fg: string
+  bg: string
+  primary: string
+  [name: string]: string
+}
+
 /**
  * From a color theme, I need to be able to
  *   - define a default tint
@@ -156,19 +169,17 @@ export class BaseColortheme {
  *   - create "derived" themes that keep the colors but change them according to a new bg
  *   - get the true RGB colors.
  */
-export class ColorTheme<T extends ColorTheme.Spec, K extends string = "50" | "100" | "200" | "300" | "400" | "500" | "600" | "700" | "800" | "900" | "950"> extends BaseColortheme {
+export class Theme<T extends ThemeColors, K extends string> extends BaseColortheme {
   _own_class: string & CssClass
 
-  public static fromColors<T extends ColorTheme.Spec, K extends string = "50" | "100" | "200" | "300" | "400" | "500" | "600" | "700" | "800" | "900" | "950">(
+  public static fromColors<T extends ThemeColors, K extends string = "50" | "100" | "200" | "300" | "400" | "500" | "600" | "700" | "800" | "900" | "950">(
 
-    bg: string, fg: string, primary: string, spec: T, ...levels: K[]
+    spec: T, ...levels: K[]
 
-    ): ColorTheme<T, K> & {[Key in `${Extract<keyof T, string> | "primary" | "neutral"}${K}` | keyof T | "neutral0" | "neutral1000"]: CssClass & string}
+    ): Theme<T, K> & MappedColors<T, K>
   {
-    return new ColorTheme(bg, fg, primary, spec, levels.length === 0 ? ["50",  "100",  "200",  "300",  "400",  "500",  "600",  "700",  "800",  "900",  "950"] : levels) as any
+    return new Theme(spec, levels.length === 0 ? ["50",  "100",  "200",  "300",  "400",  "500",  "600",  "700",  "800",  "900",  "950"] : levels) as any
   }
-
-  private _reversed_cache = new Map<string, ColorTheme<any>>()
 
   /**
    * The original definitions of the colors, with computed values.
@@ -176,22 +187,20 @@ export class ColorTheme<T extends ColorTheme.Spec, K extends string = "50" | "10
   _colors: T = {} as any
 
   private _original_colors = {} as any
-  /**
-   * Temporary colors used for computation.
-   */
-  // private _colors: {[K in keyof T]: Color} = {} as any
 
   private constructor(
     /**
      * The original colors, stored in an object + all the calculated ones...
      */
-    public bg: string,
-    public fg: string,
-    public primary: string,
     colors: T,
     private _levels: string[]
   ) {
     super()
+
+    const bg = colors.bg
+    const fg = colors.fg
+    const primary = colors.primary
+
     // the original colors
     this._original_colors = colors = Object.assign({}, colors)
     const colordefs: any = this._colors = Object.assign({}, colors)
@@ -264,54 +273,74 @@ export class ColorTheme<T extends ColorTheme.Spec, K extends string = "50" | "10
    * If recompute is true, all colors are recalculated to fit the new BG and keep their contrast
    * more or less the same it was before.
    */
-  derive(bg: string, fg: string, primary: string, opts: { recompute?: boolean}): this {
+  derive(_colors: Partial<ThemeColors>, opts?: { recompute?: boolean}): this {
     // return this
-    const colors = Object.assign({}, this._original_colors)
+    const colors: ThemeColors = Object.assign({}, this._original_colors, _colors)
 
+    let bg = colors.bg
     if (bg[0] !== '#') {
       bg = colors[bg] ?? bg
     }
 
+    let fg = colors.fg
     if (fg && fg[0] !== '#') {
       fg = colors[fg] ?? fg
     }
 
+    let primary = colors.primary
     if (primary && primary[0] !== '#') {
       primary = colors[primary] ?? primary
     }
     const op = {...opts}
 
-    var key = `${bg}-${fg ?? ''}-${primary ?? ''}-${opts.recompute ?? 'false'}`
-
-    if (this._reversed_cache.has(key)) {
-      return this._reversed_cache.get(key)! as any
-    }
-
-    var old_bg = this.bg
+    let old_bg = this._colors.bg
 
     if (op.recompute) {
       const adj = c.luminosity_adjuster(old_bg, bg)
       primary = adj(primary)
       const keys = Object.keys(colors)
       for (var k of keys) {
-        if (k in op) continue
+        if (k === "fg" || k === "bg") continue
         colors[k] = adj(colors[k])
       }
     }
 
-    const res = new ColorTheme(bg, fg, primary, colors, this._levels)
-    this._reversed_cache.set(key, res)
+    const res = new Theme(colors, this._levels)
     return res as any
   }
 
 }
 
-export namespace ColorTheme {
-  export interface Spec {
-    [name: string]: string
-    // contrast: string
-  }
-}
+
+export const theme = Theme.fromColors({
+  bg: "#ffffff",
+  fg: "#1b1b1c",
+  primary: "#0369a1",
+
+  slate: "#334155",
+  grey: "#3c3c3b",
+  zinc: "#3f3f46",
+  stone: "#44403c",
+
+  red: "#b91c1c",
+  orange: "#c2410c",
+  amber: "#b45309",
+  yellow: "#a16207",
+  lime: "#4d7c0f",
+  green: "#15803d",
+  emerald: "#047857",
+  teal: "#0f766e",
+  cyan: "#0e7490",
+  sky: "#0369a1",
+  blue: "#1d4ed8",
+  indigo: "#4338ca",
+  violet: "#6d28d9",
+  purple: "#7e22ce",
+  fuschia: "#a21caf",
+  pink: "#be185d",
+  rose: "#be123c",
+})
+
 
 export type Color = "gray" | "red" | "orange" | "amber" | "yellow" | "lime" | "green" | "emerald" | "teal" | "cyan" | "sky" | "blue" | "indigo" | "violet" | "purple" | "fuchsia" | "pink" | "rose" | "primary" | "success" | "warning" | "danger"
 
