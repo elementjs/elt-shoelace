@@ -3,7 +3,7 @@ import * as c from "./colorfn"
 
 let nbthemes = 0
 
-export class BaseColortheme {
+export class Basetheme {
   baseprops: CSSProperties = {}
 
   p(name: string, value: string) {
@@ -169,7 +169,7 @@ export interface ThemeColors {
  *   - create "derived" themes that keep the colors but change them according to a new bg
  *   - get the true RGB colors.
  */
-export class Theme<T extends ThemeColors, K extends string> extends BaseColortheme {
+export class Theme<T extends ThemeColors, K extends string> extends Basetheme {
   _own_class: string & CssClass
 
   public static fromColors<T extends ThemeColors, K extends string = "50" | "100" | "200" | "300" | "400" | "500" | "600" | "700" | "800" | "900" | "950">(
