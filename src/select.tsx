@@ -1,6 +1,7 @@
-import { Renderable, attrs_sl_button, o, e, $removed, $scrollable, RepeatScroll, $click, $shadow, css } from "elt"
+import { Renderable, attrs_sl_button, o, e, $scrollable, RepeatScroll, $click, $shadow, css, $disconnected } from "elt"
 import { style } from "osun"
 import { popup } from "./popup"
+import "elt-shoelace/lib/components/select"
 
 
 export interface SelectAttributes<T> extends attrs_sl_button {
@@ -30,7 +31,9 @@ export function Select<T>(at: SelectAttributes<T>) {
         flip
         sync="width"
       >
-        {$removed(() => o_expanded.set(false))}
+        {$disconnected(() => {
+          o_expanded.set(false)
+        })}
         <div class={cls_select_popup}>
         <e-flex style={{maxHeight: "50vh"}} column>
         {$scrollable}
@@ -70,6 +73,7 @@ export function Select<T>(at: SelectAttributes<T>) {
     {model.tf(m => labelfn(m))}
   </e-select>
 }
+
 
 const select_css = css`
 .expander {

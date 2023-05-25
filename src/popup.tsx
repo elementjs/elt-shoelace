@@ -5,9 +5,9 @@
  * Some popup handling.
  */
 
-import { node_append } from "elt"
+import { node_append, node_remove } from "elt"
 import { animate, animate_hide, animate_show, stop_animations } from "./animation"
-import { style } from "osun"
+import { style, raw as css } from "osun"
 import { Future } from "./utils"
 import type { SlElement } from "./components"
 
@@ -20,14 +20,14 @@ const popups_futures = new WeakMap<Element, Future<any | undefined>>()
 
 async function _popup_resolve(p: Element) {
   popups.delete(p)
-  popups_futures.delete(p)
   popups_futures.get(p)?.resolve(sym_popup_closed)
+  popups_futures.delete(p)
   const _p = p as SlElement
   if (_p.tagName === "SL-POPUP") {
     await stop_animations(_p.popup)
     await animate(_p.popup, animate_hide, { duration: 150 })
   }
-  p.remove()
+  node_remove(p)
 }
 
 function _close_popups() {
@@ -109,6 +109,7 @@ export function popup<T>(anchor: Element, fn: (fut: Future<T | typeof sym_popup_
     popups.add(popup_root)
     popups_futures.set(popup_root, fut)
     await popup.updateComplete
+    console.log(popup.placement)
     animate(popup.popup, animate_show, { duration: 150 })
   })
 }
@@ -118,3 +119,16 @@ const cls_popup = style("elt-popup")
 cls_popup.part("popup", {
   zIndex: "var(--sl-z-index-dropdown)"
 })
+
+
+css`
+
+sl-popup[data-current-placement^='top'][data-current-placement^='top']::part(popup) {
+  transform-origin: bottom;
+}
+
+sl-popup[data-current-placement^='bottom'][data-current-placement^='bottom']::part(popup) {
+  transform-origin: top;
+}
+
+`
