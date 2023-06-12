@@ -184,7 +184,7 @@ export class Theme<T extends ThemeColors, K extends string> extends Basetheme {
   /**
    * The original definitions of the colors, with computed values.
    */
-  _colors: T = {} as any
+  rgb: T & MappedColors<T, K> = {} as any
 
   private _original_colors = {} as any
 
@@ -203,7 +203,7 @@ export class Theme<T extends ThemeColors, K extends string> extends Basetheme {
 
     // the original colors
     this._original_colors = colors = Object.assign({}, colors)
-    const colordefs: any = this._colors = Object.assign({}, colors)
+    const colordefs: any = this.rgb = Object.assign({}, colors) as any
 
     const keys = Object.keys(colors) as (Extract<keyof T, string>)[]
 
@@ -225,7 +225,7 @@ export class Theme<T extends ThemeColors, K extends string> extends Basetheme {
 
     for (let k of [...keys]) {
       const col = colors[k]
-      ;(this._colors as any)[k] = col
+      ;(this.rgb as any)[k] = col
 
       const props_to_primary = {} as any
 
@@ -273,9 +273,9 @@ export class Theme<T extends ThemeColors, K extends string> extends Basetheme {
    * If recompute is true, all colors are recalculated to fit the new BG and keep their contrast
    * more or less the same it was before.
    */
-  derive(_colors: Partial<ThemeColors>, opts?: { recompute?: boolean}): this {
+  derive<T2 extends {[name: string]: string}>(new_colors: T2, opts?: { recompute?: boolean}): Theme<T & T2, K> & MappedColors<T & T2, K> {
     // return this
-    const colors: ThemeColors = Object.assign({}, this._original_colors, _colors)
+    const colors: ThemeColors = Object.assign({}, this._original_colors, new_colors)
 
     let bg = colors.bg
     if (bg[0] !== '#') {
@@ -293,7 +293,7 @@ export class Theme<T extends ThemeColors, K extends string> extends Basetheme {
     }
     const op = {...opts}
 
-    let old_bg = this._colors.bg
+    let old_bg = this.rgb.bg
 
     if (op.recompute) {
       const adj = c.luminosity_adjuster(old_bg, bg)

@@ -109,7 +109,6 @@ export function popup<T>(anchor: Element, fn: (fut: Future<T | typeof sym_popup_
     popups.add(popup_root)
     popups_futures.set(popup_root, fut)
     await popup.updateComplete
-    console.log(popup.placement)
     animate(popup.popup, animate_show, { duration: 150 })
   })
 }

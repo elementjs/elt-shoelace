@@ -60,13 +60,15 @@ export function Select<T>(at: SelectAttributes<T>) {
         <div part="form-control-label">
           <slot name="label"></slot>
         </div>
-        <div part="base" style={{flexGrow: "1", flexBasis: "0"}}>
-          <sl-button {...{variant,caret,size,outline}} class={cls_select_button}>
-            {$click(ev => { show_values(ev.currentTarget) })}
-            <slot/>
-            <sl-icon class={["expander", {"expanded": o_expanded}]} library="system" name="chevron-down" slot="suffix"></sl-icon>
-          </sl-button>
-        </div>
+        <sl-button part="button" {...{variant,caret,size,outline}} disabled={at.disabled} class={cls_select_button}>
+          {$click(ev => {
+            if (!o.get(at.disabled)) {
+              show_values(ev.currentTarget)
+            }
+          })}
+          <slot/>
+          <sl-icon class={["expander", {"expanded": o_expanded}]} library="system" name="chevron-down" slot="suffix"></sl-icon>
+        </sl-button>
         <slot name="form-control-help-text"></slot>
       </div>
     </>)}

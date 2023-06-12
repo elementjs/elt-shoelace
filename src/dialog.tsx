@@ -1,5 +1,6 @@
 import { $click, Renderable, e, node_add_event_listener, node_append, node_remove } from "elt"
 import { Future } from "./utils"
+import { raw as css } from "osun"
 
 
 /** Helper function to not have to type everything */
@@ -29,6 +30,17 @@ export function modal(opts: {
   </sl-dialog>).then(r => !!r)
 }
 
+
+export const EVENT_SLDIALOG_RESULT = "sl-dialog-result-event"
+
+
+export class SlDialogResultEvent<T> extends Event {
+  constructor(value: T) {
+    super("sl-dialo", {})
+  }
+}
+
+
 /**
  * It would be better to have the `fn` return SlDialog or SlDrawer, but JSX in typescript won't let us know that, which is a shame.
  */
@@ -38,6 +50,11 @@ export function show<T>(fn: (future: Future<T | undefined>) => Node, container =
 
   if (!is_show_hide(res))
     throw new Error(`show() expects sl-dialog, sl-drawer or anything that has .show() and .hide() and the "sl-after-hide" event`)
+
+  /**  */
+  res.addEventListener(EVENT_SLDIALOG_RESULT, (ev: Event) => {
+
+  })
 
   node_add_event_listener(res, "sl-after-hide", () => {
     node_remove(res)
@@ -58,3 +75,14 @@ export function show<T>(fn: (future: Future<T | undefined>) => Node, container =
     if (res.isConnected) res.hide()
   })
 }
+
+// The padding is redundant if there is a header, so we remove it.
+css`
+sl-dialog::part(header) {
+  padding-bottom: 0;
+}
+
+sl-dialog::part(footer) {
+  padding-top: 0;
+}
+`
