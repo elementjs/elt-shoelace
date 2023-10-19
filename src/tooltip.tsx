@@ -1,5 +1,5 @@
 
-import { node_on_connected, node_on_disconnected, Renderable, o, e, node_append } from "elt"
+import { node_on_connected, node_on_disconnected, Renderable, o, e, node_append, node_remove } from "elt"
 import { raw as css } from "osun"
 import { animate, animate_hide, animate_show, stop_animations } from "./animation"
 import { SlPopup } from "./components/popup"
@@ -91,7 +91,7 @@ class TooltipManager {
     this.o_open.set(false)
     await stop_animations(this.popup.popup)
     await animate(this.popup.popup, animate_hide, { duration: 150 })
-    this.popup.remove()
+    node_remove(this.popup)
   }
 
   delay_timeout: number | undefined

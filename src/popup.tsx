@@ -5,7 +5,7 @@
  * Some popup handling.
  */
 
-import { node_append, node_remove } from "elt"
+import { node_append, node_do_disconnect, node_remove } from "elt"
 import { animate, animate_hide, animate_show, stop_animations } from "./animation"
 import { style, raw as css } from "osun"
 import { Future } from "./utils"
@@ -23,6 +23,7 @@ async function _popup_resolve(p: Element) {
   popups_futures.get(p)?.resolve(sym_popup_closed)
   popups_futures.delete(p)
   const _p = p as SlElement
+  node_do_disconnect(_p)
   if (_p.tagName === "SL-POPUP") {
     await stop_animations(_p.popup)
     await animate(_p.popup, animate_hide, { duration: 150 })
