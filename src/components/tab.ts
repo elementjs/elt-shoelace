@@ -7,9 +7,13 @@ import SlTab from "@shoelace-style/shoelace/dist/components/tab/tab.js"
 export { SlTab }
 declare module "elt" {
   interface attrs_sl_tab extends Attrs<HTMLElementTagNameMap["sl-tab"]> {
+    /** The name of the tab panel this tab is associated with. The panel must be located in the same tab group. */
     panel?: NRO<string>
+    /** Draws the tab in an active state. */
     active?: NRO<boolean>
+    /** Makes the tab closable and shows a close button. */
     closable?: NRO<boolean>
+    /** Disables the tab and prevents selection. */
     disabled?: NRO<boolean>
   }
 

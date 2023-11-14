@@ -7,9 +7,13 @@ import SlTreeItem from "@shoelace-style/shoelace/dist/components/tree-item/tree-
 export { SlTreeItem }
 declare module "elt" {
   interface attrs_sl_tree_item extends Attrs<HTMLElementTagNameMap["sl-tree-item"]> {
+    /** Expands the tree item. */
     expanded?: NRO<boolean>
+    /** Draws the tree item in a selected state. */
     selected?: NRO<boolean>
+    /** Disables the tree item. */
     disabled?: NRO<boolean>
+    /** Enables lazy loading behavior. */
     lazy?: NRO<boolean>
   }
 

@@ -7,8 +7,11 @@ import SlAnimatedImage from "@shoelace-style/shoelace/dist/components/animated-i
 export { SlAnimatedImage }
 declare module "elt" {
   interface attrs_sl_animated_image extends Attrs<HTMLElementTagNameMap["sl-animated-image"]> {
+    /** The path to the image to load. */
     src?: NRO<string>
+    /** A description of the image used by assistive devices. */
     alt?: NRO<string>
+    /** Plays the animation. When this attribute is remove, the animation will pause. */
     play?: NRO<boolean>
   }
 

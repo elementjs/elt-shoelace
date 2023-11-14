@@ -7,6 +7,8 @@ import SlButtonGroup from "@shoelace-style/shoelace/dist/components/button-group
 export { SlButtonGroup }
 declare module "elt" {
   interface attrs_sl_button_group extends Attrs<HTMLElementTagNameMap["sl-button-group"]> {
+    /** A label to use for the button group. This won't be displayed on the screen, but it will be announced by assistive
+devices when interacting with the control and is strongly recommended. */
     label?: NRO<string>
   }
 

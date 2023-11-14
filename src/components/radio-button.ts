@@ -7,9 +7,14 @@ import SlRadioButton from "@shoelace-style/shoelace/dist/components/radio-button
 export { SlRadioButton }
 declare module "elt" {
   interface attrs_sl_radio_button extends Attrs<HTMLElementTagNameMap["sl-radio-button"]> {
+    /** The radio's value. When selected, the radio group will receive this value. */
     value?: NRO<string>
+    /** Disables the radio button. */
     disabled?: NRO<boolean>
+    /** The radio button's size. When used inside a radio group, the size will be determined by the radio group's size so
+this attribute can typically be omitted. */
     size?: NRO<'small' | 'medium' | 'large'>
+    /** Draws a pill-style radio button with rounded edges. */
     pill?: NRO<boolean>
   }
 

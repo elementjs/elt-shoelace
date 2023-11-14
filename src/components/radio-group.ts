@@ -7,11 +7,22 @@ import SlRadioGroup from "@shoelace-style/shoelace/dist/components/radio-group/r
 export { SlRadioGroup }
 declare module "elt" {
   interface attrs_sl_radio_group extends Attrs<HTMLElementTagNameMap["sl-radio-group"]> {
+    /** The radio group's label. Required for proper accessibility. If you need to display HTML, use the `label` slot
+instead. */
     label?: NRO<string>
+    /** The radio groups's help text. If you need to display HTML, use the `help-text` slot instead. */
     "help-text"?: NRO<string>
+    /** The name of the radio group, submitted as a name/value pair with form data. */
     name?: NRO<string>
+    /** The current value of the radio group, submitted as a name/value pair with form data. */
     value?: NRO<string>
+    /** The radio group's size. This size will be applied to all child radios and radio buttons. */
+    size?: NRO<'small' | 'medium' | 'large'>
+    /** By default, form controls are associated with the nearest containing `<form>` element. This attribute allows you
+to place the form control outside of a form and associate it with the form that has this `id`. The form must be in
+the same document or shadow root for this to work. */
     form?: NRO<string>
+    /** Ensures a child radio is checked before allowing the containing form to submit. */
     required?: NRO<boolean>
   }
 

@@ -7,7 +7,9 @@ import SlProgressRing from "@shoelace-style/shoelace/dist/components/progress-ri
 export { SlProgressRing }
 declare module "elt" {
   interface attrs_sl_progress_ring extends Attrs<HTMLElementTagNameMap["sl-progress-ring"]> {
+    /** The current progress as a percentage, 0 to 100. */
     value?: NRO<number>
+    /** A custom label for assistive devices. */
     label?: NRO<string>
   }
 

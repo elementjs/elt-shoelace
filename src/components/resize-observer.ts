@@ -7,6 +7,7 @@ import SlResizeObserver from "@shoelace-style/shoelace/dist/components/resize-ob
 export { SlResizeObserver }
 declare module "elt" {
   interface attrs_sl_resize_observer extends Attrs<HTMLElementTagNameMap["sl-resize-observer"]> {
+    /** Disables the observer. */
     disabled?: NRO<boolean>
   }
 

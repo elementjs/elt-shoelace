@@ -7,6 +7,7 @@ import SlSkeleton from "@shoelace-style/shoelace/dist/components/skeleton/skelet
 export { SlSkeleton }
 declare module "elt" {
   interface attrs_sl_skeleton extends Attrs<HTMLElementTagNameMap["sl-skeleton"]> {
+    /** Determines which effect the skeleton will use. */
     effect?: NRO<'pulse' | 'sheen' | 'none'>
   }
 

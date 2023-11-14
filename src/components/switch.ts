@@ -8,12 +8,21 @@ export { SlSwitch }
 declare module "elt" {
   interface attrs_sl_switch extends Attrs<HTMLElementTagNameMap["sl-switch"]> {
     title?: NRO<string>
+    /** The name of the switch, submitted as a name/value pair with form data. */
     name?: NRO<string>
+    /** The current value of the switch, submitted as a name/value pair with form data. */
     value?: NRO<string>
+    /** The switch's size. */
     size?: NRO<'small' | 'medium' | 'large'>
+    /** Disables the switch. */
     disabled?: NRO<boolean>
+    /** Draws the switch in a checked state. */
     checked?: NRO<boolean>
+    /** By default, form controls are associated with the nearest containing `<form>` element. This attribute allows you
+to place the form control outside of a form and associate it with the form that has this `id`. The form must be in
+the same document or shadow root for this to work. */
     form?: NRO<string>
+    /** Makes the switch a required field. */
     required?: NRO<boolean>
   }
 

@@ -8,27 +8,53 @@ export { SlTextarea }
 declare module "elt" {
   interface attrs_sl_textarea extends Attrs<HTMLElementTagNameMap["sl-textarea"]> {
     title?: NRO<string>
+    /** The name of the textarea, submitted as a name/value pair with form data. */
     name?: NRO<string>
+    /** The current value of the textarea, submitted as a name/value pair with form data. */
     value?: NRO<string>
+    /** The textarea's size. */
     size?: NRO<'small' | 'medium' | 'large'>
+    /** Draws a filled textarea. */
     filled?: NRO<boolean>
+    /** The textarea's label. If you need to display HTML, use the `label` slot instead. */
     label?: NRO<string>
+    /** The textarea's help text. If you need to display HTML, use the `help-text` slot instead. */
     "help-text"?: NRO<string>
+    /** Placeholder text to show as a hint when the input is empty. */
     placeholder?: NRO<string>
+    /** The number of rows to display by default. */
     rows?: NRO<number>
+    /** Controls how the textarea can be resized. */
     resize?: NRO<'none' | 'vertical' | 'auto'>
+    /** Disables the textarea. */
     disabled?: NRO<boolean>
+    /** Makes the textarea readonly. */
     readonly?: NRO<boolean>
+    /** By default, form controls are associated with the nearest containing `<form>` element. This attribute allows you
+to place the form control outside of a form and associate it with the form that has this `id`. The form must be in
+the same document or shadow root for this to work. */
     form?: NRO<string>
+    /** Makes the textarea a required field. */
     required?: NRO<boolean>
+    /** The minimum length of input that will be considered valid. */
     minlength?: NRO<number>
+    /** The maximum length of input that will be considered valid. */
     maxlength?: NRO<number>
+    /** Controls whether and how text input is automatically capitalized as it is entered by the user. */
     autocapitalize?: NRO<'off' | 'none' | 'on' | 'sentences' | 'words' | 'characters'>
+    /** Indicates whether the browser's autocorrect feature is on or off. */
     autocorrect?: NRO<string>
+    /** Specifies what permission the browser has to provide assistance in filling out form field values. Refer to
+[this page on MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete) for available values. */
     autocomplete?: NRO<string>
+    /** Indicates that the input should receive focus on page load. */
     autofocus?: NRO<boolean>
+    /** Used to customize the label or icon of the Enter key on virtual keyboards. */
     enterkeyhint?: NRO<'enter' | 'done' | 'go' | 'next' | 'previous' | 'search' | 'send'>
+    /** Enables spell checking on the textarea. */
     spellcheck?: NRO<boolean>
+    /** Tells the browser what type of data will be entered by the user, allowing it to display the appropriate virtual
+keyboard on supportive devices. */
     inputmode?: NRO<'none' | 'text' | 'decimal' | 'numeric' | 'tel' | 'search' | 'email' | 'url'>
   }
 

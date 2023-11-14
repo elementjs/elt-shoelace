@@ -7,8 +7,12 @@ import SlDetails from "@shoelace-style/shoelace/dist/components/details/details.
 export { SlDetails }
 declare module "elt" {
   interface attrs_sl_details extends Attrs<HTMLElementTagNameMap["sl-details"]> {
+    /** Indicates whether or not the details is open. You can toggle this attribute to show and hide the details, or you
+can use the `show()` and `hide()` methods and this attribute will reflect the details' open state. */
     open?: NRO<boolean>
+    /** The summary to show in the header. If you need to display HTML, use the `summary` slot instead. */
     summary?: NRO<string>
+    /** Disables the details so it can't be toggled. */
     disabled?: NRO<boolean>
   }
 

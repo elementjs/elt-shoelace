@@ -7,8 +7,12 @@ import SlBreadcrumbItem from "@shoelace-style/shoelace/dist/components/breadcrum
 export { SlBreadcrumbItem }
 declare module "elt" {
   interface attrs_sl_breadcrumb_item extends Attrs<HTMLElementTagNameMap["sl-breadcrumb-item"]> {
+    /** Optional URL to direct the user to when the breadcrumb item is activated. When set, a link will be rendered
+internally. When unset, a button will be rendered instead. */
     href?: NRO<string | undefined>
+    /** Tells the browser where to open the link. Only used when `href` is set. */
     target?: NRO<'_blank' | '_parent' | '_self' | '_top' | undefined>
+    /** The `rel` attribute to use on the link. Only used when `href` is set. */
     rel?: NRO<string>
   }
 

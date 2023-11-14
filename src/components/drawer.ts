@@ -7,10 +7,19 @@ import SlDrawer from "@shoelace-style/shoelace/dist/components/drawer/drawer.js"
 export { SlDrawer }
 declare module "elt" {
   interface attrs_sl_drawer extends Attrs<HTMLElementTagNameMap["sl-drawer"]> {
+    /** Indicates whether or not the drawer is open. You can toggle this attribute to show and hide the drawer, or you can
+use the `show()` and `hide()` methods and this attribute will reflect the drawer's open state. */
     open?: NRO<boolean>
+    /** The drawer's label as displayed in the header. You should always include a relevant label even when using
+`no-header`, as it is required for proper accessibility. If you need to display HTML, use the `label` slot instead. */
     label?: NRO<string>
+    /** The direction from which the drawer will open. */
     placement?: NRO<'top' | 'end' | 'bottom' | 'start'>
+    /** By default, the drawer slides out of its containing block (usually the viewport). To make the drawer slide out of
+its parent element, set this attribute and add `position: relative` to the parent. */
     contained?: NRO<boolean>
+    /** Removes the header. This will also remove the default close button, so please ensure you provide an easy,
+accessible way for users to dismiss the drawer. */
     "no-header"?: NRO<boolean>
   }
 

@@ -7,9 +7,13 @@ import SlMenuItem from "@shoelace-style/shoelace/dist/components/menu-item/menu-
 export { SlMenuItem }
 declare module "elt" {
   interface attrs_sl_menu_item extends Attrs<HTMLElementTagNameMap["sl-menu-item"]> {
+    /** The type of menu item to render. To use `checked`, this value must be set to `checkbox`. */
     type?: NRO<'normal' | 'checkbox'>
+    /** Draws the item in a checked state. */
     checked?: NRO<boolean>
+    /** A unique value to store in the menu item. This can be used as a way to identify menu items when selected. */
     value?: NRO<string>
+    /** Draws the menu item in a disabled state, preventing selection. */
     disabled?: NRO<boolean>
   }
 

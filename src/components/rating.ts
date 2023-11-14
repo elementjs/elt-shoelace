@@ -7,12 +7,22 @@ import SlRating from "@shoelace-style/shoelace/dist/components/rating/rating.js"
 export { SlRating }
 declare module "elt" {
   interface attrs_sl_rating extends Attrs<HTMLElementTagNameMap["sl-rating"]> {
+    /** A label that describes the rating to assistive devices. */
     label?: NRO<string>
+    /** The current rating. */
     value?: NRO<number>
+    /** The highest rating to show. */
     max?: NRO<number>
+    /** The precision at which the rating will increase and decrease. For example, to allow half-star ratings, set this
+attribute to `0.5`. */
     precision?: NRO<number>
+    /** Makes the rating readonly. */
     readonly?: NRO<boolean>
+    /** Disables the rating. */
     disabled?: NRO<boolean>
+    /** A function that customizes the symbol to be rendered. The first and only argument is the rating's current value.
+The function should return a string containing trusted HTML of the symbol to render at the specified value. Works
+well with `<sl-icon>` elements. */
     getSymbol?: NRO<(value: number) => string>
   }
 

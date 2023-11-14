@@ -7,6 +7,8 @@ import SlTree from "@shoelace-style/shoelace/dist/components/tree/tree.js"
 export { SlTree }
 declare module "elt" {
   interface attrs_sl_tree extends Attrs<HTMLElementTagNameMap["sl-tree"]> {
+    /** The selection behavior of the tree. Single selection allows only one node to be selected at a time. Multiple
+displays checkboxes and allows more than one node to be selected. Leaf allows only leaf nodes to be selected. */
     selection?: NRO<'single' | 'multiple' | 'leaf'>
   }
 

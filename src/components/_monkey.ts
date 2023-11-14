@@ -5,17 +5,20 @@
  */
 import type {
   SlAlert,
-  SlAnimatedImage,
-  SlBadge,
   SlAnimation,
+  SlAnimatedImage,
+  SlAvatar,
+  SlBadge,
   SlBreadcrumbItem,
   SlBreadcrumb,
   SlButton,
-  SlAvatar,
   SlButtonGroup,
   SlCard,
+  SlCarousel,
+  SlCarouselItem,
   SlCheckbox,
   SlColorPicker,
+  SlCopyButton,
   SlDetails,
   SlDialog,
   SlDivider,
@@ -29,19 +32,19 @@ import type {
   SlImageComparer,
   SlInclude,
   SlInput,
-  SlMenuItem,
   SlMenu,
+  SlMenuItem,
   SlMenuLabel,
   SlMutationObserver,
   SlOption,
   SlPopup,
   SlProgressBar,
   SlProgressRing,
-  SlQrCode,
   SlRadio,
   SlRadioButton,
   SlRadioGroup,
   SlRange,
+  SlQrCode,
   SlRating,
   SlRelativeTime,
   SlResizeObserver,
@@ -49,8 +52,8 @@ import type {
   SlSkeleton,
   SlSpinner,
   SlSplitPanel,
-  SlSwitch,
   SlTab,
+  SlSwitch,
   SlTabGroup,
   SlTabPanel,
   SlTag,
@@ -64,17 +67,20 @@ import type {
 
 export type SlElement = 
   | SlAlert & { tagName: "SL-ALERT" }
-  | SlAnimatedImage & { tagName: "SL-ANIMATED-IMAGE" }
-  | SlBadge & { tagName: "SL-BADGE" }
   | SlAnimation & { tagName: "SL-ANIMATION" }
+  | SlAnimatedImage & { tagName: "SL-ANIMATED-IMAGE" }
+  | SlAvatar & { tagName: "SL-AVATAR" }
+  | SlBadge & { tagName: "SL-BADGE" }
   | SlBreadcrumbItem & { tagName: "SL-BREADCRUMB-ITEM" }
   | SlBreadcrumb & { tagName: "SL-BREADCRUMB" }
   | SlButton & { tagName: "SL-BUTTON" }
-  | SlAvatar & { tagName: "SL-AVATAR" }
   | SlButtonGroup & { tagName: "SL-BUTTON-GROUP" }
   | SlCard & { tagName: "SL-CARD" }
+  | SlCarousel & { tagName: "SL-CAROUSEL" }
+  | SlCarouselItem & { tagName: "SL-CAROUSEL-ITEM" }
   | SlCheckbox & { tagName: "SL-CHECKBOX" }
   | SlColorPicker & { tagName: "SL-COLOR-PICKER" }
+  | SlCopyButton & { tagName: "SL-COPY-BUTTON" }
   | SlDetails & { tagName: "SL-DETAILS" }
   | SlDialog & { tagName: "SL-DIALOG" }
   | SlDivider & { tagName: "SL-DIVIDER" }
@@ -88,19 +94,19 @@ export type SlElement =
   | SlImageComparer & { tagName: "SL-IMAGE-COMPARER" }
   | SlInclude & { tagName: "SL-INCLUDE" }
   | SlInput & { tagName: "SL-INPUT" }
-  | SlMenuItem & { tagName: "SL-MENU-ITEM" }
   | SlMenu & { tagName: "SL-MENU" }
+  | SlMenuItem & { tagName: "SL-MENU-ITEM" }
   | SlMenuLabel & { tagName: "SL-MENU-LABEL" }
   | SlMutationObserver & { tagName: "SL-MUTATION-OBSERVER" }
   | SlOption & { tagName: "SL-OPTION" }
   | SlPopup & { tagName: "SL-POPUP" }
   | SlProgressBar & { tagName: "SL-PROGRESS-BAR" }
   | SlProgressRing & { tagName: "SL-PROGRESS-RING" }
-  | SlQrCode & { tagName: "SL-QR-CODE" }
   | SlRadio & { tagName: "SL-RADIO" }
   | SlRadioButton & { tagName: "SL-RADIO-BUTTON" }
   | SlRadioGroup & { tagName: "SL-RADIO-GROUP" }
   | SlRange & { tagName: "SL-RANGE" }
+  | SlQrCode & { tagName: "SL-QR-CODE" }
   | SlRating & { tagName: "SL-RATING" }
   | SlRelativeTime & { tagName: "SL-RELATIVE-TIME" }
   | SlResizeObserver & { tagName: "SL-RESIZE-OBSERVER" }
@@ -108,8 +114,8 @@ export type SlElement =
   | SlSkeleton & { tagName: "SL-SKELETON" }
   | SlSpinner & { tagName: "SL-SPINNER" }
   | SlSplitPanel & { tagName: "SL-SPLIT-PANEL" }
-  | SlSwitch & { tagName: "SL-SWITCH" }
   | SlTab & { tagName: "SL-TAB" }
+  | SlSwitch & { tagName: "SL-SWITCH" }
   | SlTabGroup & { tagName: "SL-TAB-GROUP" }
   | SlTabPanel & { tagName: "SL-TAB-PANEL" }
   | SlTag & { tagName: "SL-TAG" }
@@ -121,17 +127,20 @@ export type SlElement =
 
 
 export function sl_is(node: Element, name: "SL-ALERT"): node is SlAlert
-export function sl_is(node: Element, name: "SL-ANIMATED-IMAGE"): node is SlAnimatedImage
-export function sl_is(node: Element, name: "SL-BADGE"): node is SlBadge
 export function sl_is(node: Element, name: "SL-ANIMATION"): node is SlAnimation
+export function sl_is(node: Element, name: "SL-ANIMATED-IMAGE"): node is SlAnimatedImage
+export function sl_is(node: Element, name: "SL-AVATAR"): node is SlAvatar
+export function sl_is(node: Element, name: "SL-BADGE"): node is SlBadge
 export function sl_is(node: Element, name: "SL-BREADCRUMB-ITEM"): node is SlBreadcrumbItem
 export function sl_is(node: Element, name: "SL-BREADCRUMB"): node is SlBreadcrumb
 export function sl_is(node: Element, name: "SL-BUTTON"): node is SlButton
-export function sl_is(node: Element, name: "SL-AVATAR"): node is SlAvatar
 export function sl_is(node: Element, name: "SL-BUTTON-GROUP"): node is SlButtonGroup
 export function sl_is(node: Element, name: "SL-CARD"): node is SlCard
+export function sl_is(node: Element, name: "SL-CAROUSEL"): node is SlCarousel
+export function sl_is(node: Element, name: "SL-CAROUSEL-ITEM"): node is SlCarouselItem
 export function sl_is(node: Element, name: "SL-CHECKBOX"): node is SlCheckbox
 export function sl_is(node: Element, name: "SL-COLOR-PICKER"): node is SlColorPicker
+export function sl_is(node: Element, name: "SL-COPY-BUTTON"): node is SlCopyButton
 export function sl_is(node: Element, name: "SL-DETAILS"): node is SlDetails
 export function sl_is(node: Element, name: "SL-DIALOG"): node is SlDialog
 export function sl_is(node: Element, name: "SL-DIVIDER"): node is SlDivider
@@ -145,19 +154,19 @@ export function sl_is(node: Element, name: "SL-ICON-BUTTON"): node is SlIconButt
 export function sl_is(node: Element, name: "SL-IMAGE-COMPARER"): node is SlImageComparer
 export function sl_is(node: Element, name: "SL-INCLUDE"): node is SlInclude
 export function sl_is(node: Element, name: "SL-INPUT"): node is SlInput
-export function sl_is(node: Element, name: "SL-MENU-ITEM"): node is SlMenuItem
 export function sl_is(node: Element, name: "SL-MENU"): node is SlMenu
+export function sl_is(node: Element, name: "SL-MENU-ITEM"): node is SlMenuItem
 export function sl_is(node: Element, name: "SL-MENU-LABEL"): node is SlMenuLabel
 export function sl_is(node: Element, name: "SL-MUTATION-OBSERVER"): node is SlMutationObserver
 export function sl_is(node: Element, name: "SL-OPTION"): node is SlOption
 export function sl_is(node: Element, name: "SL-POPUP"): node is SlPopup
 export function sl_is(node: Element, name: "SL-PROGRESS-BAR"): node is SlProgressBar
 export function sl_is(node: Element, name: "SL-PROGRESS-RING"): node is SlProgressRing
-export function sl_is(node: Element, name: "SL-QR-CODE"): node is SlQrCode
 export function sl_is(node: Element, name: "SL-RADIO"): node is SlRadio
 export function sl_is(node: Element, name: "SL-RADIO-BUTTON"): node is SlRadioButton
 export function sl_is(node: Element, name: "SL-RADIO-GROUP"): node is SlRadioGroup
 export function sl_is(node: Element, name: "SL-RANGE"): node is SlRange
+export function sl_is(node: Element, name: "SL-QR-CODE"): node is SlQrCode
 export function sl_is(node: Element, name: "SL-RATING"): node is SlRating
 export function sl_is(node: Element, name: "SL-RELATIVE-TIME"): node is SlRelativeTime
 export function sl_is(node: Element, name: "SL-RESIZE-OBSERVER"): node is SlResizeObserver
@@ -165,8 +174,8 @@ export function sl_is(node: Element, name: "SL-SELECT"): node is SlSelect
 export function sl_is(node: Element, name: "SL-SKELETON"): node is SlSkeleton
 export function sl_is(node: Element, name: "SL-SPINNER"): node is SlSpinner
 export function sl_is(node: Element, name: "SL-SPLIT-PANEL"): node is SlSplitPanel
-export function sl_is(node: Element, name: "SL-SWITCH"): node is SlSwitch
 export function sl_is(node: Element, name: "SL-TAB"): node is SlTab
+export function sl_is(node: Element, name: "SL-SWITCH"): node is SlSwitch
 export function sl_is(node: Element, name: "SL-TAB-GROUP"): node is SlTabGroup
 export function sl_is(node: Element, name: "SL-TAB-PANEL"): node is SlTabPanel
 export function sl_is(node: Element, name: "SL-TAG"): node is SlTag

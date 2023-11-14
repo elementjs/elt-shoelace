@@ -7,17 +7,31 @@ import SlFormatDate from "@shoelace-style/shoelace/dist/components/format-date/f
 export { SlFormatDate }
 declare module "elt" {
   interface attrs_sl_format_date extends Attrs<HTMLElementTagNameMap["sl-format-date"]> {
+    /** The date/time to format. If not set, the current date and time will be used. When passing a string, it's strongly
+recommended to use the ISO 8601 format to ensure timezones are handled correctly. To convert a date to this format
+in JavaScript, use [`date.toISOString()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toISOString). */
     date?: NRO<Date | string>
+    /** The format for displaying the weekday. */
     weekday?: NRO<'narrow' | 'short' | 'long'>
+    /** The format for displaying the era. */
     era?: NRO<'narrow' | 'short' | 'long'>
+    /** The format for displaying the year. */
     year?: NRO<'numeric' | '2-digit'>
+    /** The format for displaying the month. */
     month?: NRO<'numeric' | '2-digit' | 'narrow' | 'short' | 'long'>
+    /** The format for displaying the day. */
     day?: NRO<'numeric' | '2-digit'>
+    /** The format for displaying the hour. */
     hour?: NRO<'numeric' | '2-digit'>
+    /** The format for displaying the minute. */
     minute?: NRO<'numeric' | '2-digit'>
+    /** The format for displaying the second. */
     second?: NRO<'numeric' | '2-digit'>
+    /** The format for displaying the time. */
     "time-zone-name"?: NRO<'short' | 'long'>
+    /** The time zone to express the time in. */
     "time-zone"?: NRO<string>
+    /** The format for displaying the hour. */
     "hour-format"?: NRO<'auto' | '12' | '24'>
   }
 

@@ -7,16 +7,32 @@ import SlAnimation from "@shoelace-style/shoelace/dist/components/animation/anim
 export { SlAnimation }
 declare module "elt" {
   interface attrs_sl_animation extends Attrs<HTMLElementTagNameMap["sl-animation"]> {
+    /** The name of the built-in animation to use. For custom animations, use the `keyframes` prop. */
     name?: NRO<string>
+    /** Plays the animation. When omitted, the animation will be paused. This attribute will be automatically removed when
+the animation finishes or gets canceled. */
     play?: NRO<boolean>
+    /** The number of milliseconds to delay the start of the animation. */
     delay?: NRO<number>
+    /** Determines the direction of playback as well as the behavior when reaching the end of an iteration.
+[Learn more](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-direction) */
     direction?: NRO<PlaybackDirection>
+    /** The number of milliseconds each iteration of the animation takes to complete. */
     duration?: NRO<number>
+    /** The easing function to use for the animation. This can be a Shoelace easing function or a custom easing function
+such as `cubic-bezier(0, 1, .76, 1.14)`. */
     easing?: NRO<string>
+    /** The number of milliseconds to delay after the active period of an animation sequence. */
     "end-delay"?: NRO<number>
+    /** Sets how the animation applies styles to its target before and after its execution. */
     fill?: NRO<FillMode>
+    /** The number of iterations to run before the animation completes. Defaults to `Infinity`, which loops. */
     iterations?: NRO<string>
+    /** The offset at which to start the animation, usually between 0 (start) and 1 (end). */
     "iteration-start"?: NRO<number>
+    /** Sets the animation's playback rate. The default is `1`, which plays the animation at a normal speed. Setting this
+to `2`, for example, will double the animation's speed. A negative value can be used to reverse the animation. This
+value can be changed without causing the animation to restart. */
     "playback-rate"?: NRO<number>
   }
 

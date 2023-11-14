@@ -7,6 +7,8 @@ import SlBreadcrumb from "@shoelace-style/shoelace/dist/components/breadcrumb/br
 export { SlBreadcrumb }
 declare module "elt" {
   interface attrs_sl_breadcrumb extends Attrs<HTMLElementTagNameMap["sl-breadcrumb"]> {
+    /** The label to use for the breadcrumb control. This will not be shown on the screen, but it will be announced by
+screen readers and other assistive devices to provide more context for users. */
     label?: NRO<string>
   }
 

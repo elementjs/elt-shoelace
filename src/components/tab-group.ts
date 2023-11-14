@@ -7,8 +7,12 @@ import SlTabGroup from "@shoelace-style/shoelace/dist/components/tab-group/tab-g
 export { SlTabGroup }
 declare module "elt" {
   interface attrs_sl_tab_group extends Attrs<HTMLElementTagNameMap["sl-tab-group"]> {
+    /** The placement of the tabs. */
     placement?: NRO<'top' | 'bottom' | 'start' | 'end'>
+    /** When set to auto, navigating tabs with the arrow keys will instantly show the corresponding tab panel. When set to
+manual, the tab will receive focus but will not show until the user presses spacebar or enter. */
     activation?: NRO<'auto' | 'manual'>
+    /** Disables the scroll arrows that appear when tabs overflow. */
     "no-scroll-controls"?: NRO<boolean>
   }
 

@@ -8,13 +8,24 @@ export { SlCheckbox }
 declare module "elt" {
   interface attrs_sl_checkbox extends Attrs<HTMLElementTagNameMap["sl-checkbox"]> {
     title?: NRO<string>
+    /** The name of the checkbox, submitted as a name/value pair with form data. */
     name?: NRO<string>
+    /** The current value of the checkbox, submitted as a name/value pair with form data. */
     value?: NRO<string>
+    /** The checkbox's size. */
     size?: NRO<'small' | 'medium' | 'large'>
+    /** Disables the checkbox. */
     disabled?: NRO<boolean>
+    /** Draws the checkbox in a checked state. */
     checked?: NRO<boolean>
+    /** Draws the checkbox in an indeterminate state. This is usually applied to checkboxes that represents a "select
+all/none" behavior when associated checkboxes have a mix of checked and unchecked states. */
     indeterminate?: NRO<boolean>
+    /** By default, form controls are associated with the nearest containing `<form>` element. This attribute allows you
+to place the form control outside of a form and associate it with the form that has this `id`. The form must be in
+the same document or shadow root for this to work. */
     form?: NRO<string>
+    /** Makes the checkbox a required field. */
     required?: NRO<boolean>
   }
 

@@ -7,6 +7,7 @@ import SlImageComparer from "@shoelace-style/shoelace/dist/components/image-comp
 export { SlImageComparer }
 declare module "elt" {
   interface attrs_sl_image_comparer extends Attrs<HTMLElementTagNameMap["sl-image-comparer"]> {
+    /** The position of the divider as a percentage. */
     position?: NRO<number>
   }
 

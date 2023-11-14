@@ -7,6 +7,7 @@ import SlDivider from "@shoelace-style/shoelace/dist/components/divider/divider.
 export { SlDivider }
 declare module "elt" {
   interface attrs_sl_divider extends Attrs<HTMLElementTagNameMap["sl-divider"]> {
+    /** Draws the divider in a vertical orientation. */
     vertical?: NRO<boolean>
   }
 

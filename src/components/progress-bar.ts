@@ -7,8 +7,11 @@ import SlProgressBar from "@shoelace-style/shoelace/dist/components/progress-bar
 export { SlProgressBar }
 declare module "elt" {
   interface attrs_sl_progress_bar extends Attrs<HTMLElementTagNameMap["sl-progress-bar"]> {
+    /** The current progress as a percentage, 0 to 100. */
     value?: NRO<number>
+    /** When true, percentage is ignored, the label is hidden, and the progress bar is drawn in an indeterminate state. */
     indeterminate?: NRO<boolean>
+    /** A custom label for assistive devices. */
     label?: NRO<string>
   }
 

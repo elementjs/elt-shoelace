@@ -7,7 +7,9 @@ import SlTabPanel from "@shoelace-style/shoelace/dist/components/tab-panel/tab-p
 export { SlTabPanel }
 declare module "elt" {
   interface attrs_sl_tab_panel extends Attrs<HTMLElementTagNameMap["sl-tab-panel"]> {
+    /** The tab panel's name. */
     name?: NRO<string>
+    /** When true, the tab panel will be shown. */
     active?: NRO<boolean>
   }
 

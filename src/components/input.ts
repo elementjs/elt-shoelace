@@ -8,35 +8,71 @@ export { SlInput }
 declare module "elt" {
   interface attrs_sl_input extends Attrs<HTMLElementTagNameMap["sl-input"]> {
     title?: NRO<string>
+    /** The type of input. Works the same as a native `<input>` element, but only a subset of types are supported. Defaults
+to `text`. */
     type?: NRO<'date' | 'datetime-local' | 'email' | 'number' | 'password' | 'search' | 'tel' | 'text' | 'time' | 'url'>
+    /** The name of the input, submitted as a name/value pair with form data. */
     name?: NRO<string>
+    /** The current value of the input, submitted as a name/value pair with form data. */
     value?: NRO<string>
+    /** The input's size. */
     size?: NRO<'small' | 'medium' | 'large'>
+    /** Draws a filled input. */
     filled?: NRO<boolean>
+    /** Draws a pill-style input with rounded edges. */
     pill?: NRO<boolean>
+    /** The input's label. If you need to display HTML, use the `label` slot instead. */
     label?: NRO<string>
+    /** The input's help text. If you need to display HTML, use the `help-text` slot instead. */
     "help-text"?: NRO<string>
+    /** Adds a clear button when the input is not empty. */
     clearable?: NRO<boolean>
+    /** Disables the input. */
     disabled?: NRO<boolean>
+    /** Placeholder text to show as a hint when the input is empty. */
     placeholder?: NRO<string>
+    /** Makes the input readonly. */
     readonly?: NRO<boolean>
+    /** Adds a button to toggle the password's visibility. Only applies to password types. */
     "password-toggle"?: NRO<boolean>
+    /** Determines whether or not the password is currently visible. Only applies to password input types. */
     "password-visible"?: NRO<boolean>
+    /** Hides the browser's built-in increment/decrement spin buttons for number inputs. */
     "no-spin-buttons"?: NRO<boolean>
+    /** By default, form controls are associated with the nearest containing `<form>` element. This attribute allows you
+to place the form control outside of a form and associate it with the form that has this `id`. The form must be in
+the same document or shadow root for this to work. */
     form?: NRO<string>
+    /** Makes the input a required field. */
     required?: NRO<boolean>
+    /** A regular expression pattern to validate input against. */
     pattern?: NRO<string>
+    /** The minimum length of input that will be considered valid. */
     minlength?: NRO<number>
+    /** The maximum length of input that will be considered valid. */
     maxlength?: NRO<number>
-    min?: NRO<number>
-    max?: NRO<number>
+    /** The input's minimum value. Only applies to date and number input types. */
+    min?: NRO<number | string>
+    /** The input's maximum value. Only applies to date and number input types. */
+    max?: NRO<number | string>
+    /** Specifies the granularity that the value must adhere to, or the special value `any` which means no stepping is
+implied, allowing any numeric value. Only applies to date and number input types. */
     step?: NRO<number | 'any'>
+    /** Controls whether and how text input is automatically capitalized as it is entered by the user. */
     autocapitalize?: NRO<'off' | 'none' | 'on' | 'sentences' | 'words' | 'characters'>
+    /** Indicates whether the browser's autocorrect feature is on or off. */
     autocorrect?: NRO<'off' | 'on'>
+    /** Specifies what permission the browser has to provide assistance in filling out form field values. Refer to
+[this page on MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete) for available values. */
     autocomplete?: NRO<string>
+    /** Indicates that the input should receive focus on page load. */
     autofocus?: NRO<boolean>
+    /** Used to customize the label or icon of the Enter key on virtual keyboards. */
     enterkeyhint?: NRO<'enter' | 'done' | 'go' | 'next' | 'previous' | 'search' | 'send'>
+    /** Enables spell checking on the input. */
     spellcheck?: NRO<boolean>
+    /** Tells the browser what type of data will be entered by the user, allowing it to display the appropriate virtual
+keyboard on supportive devices. */
     inputmode?: NRO<'none' | 'text' | 'decimal' | 'numeric' | 'tel' | 'search' | 'email' | 'url'>
   }
 

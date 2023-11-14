@@ -7,12 +7,23 @@ import SlSplitPanel from "@shoelace-style/shoelace/dist/components/split-panel/s
 export { SlSplitPanel }
 declare module "elt" {
   interface attrs_sl_split_panel extends Attrs<HTMLElementTagNameMap["sl-split-panel"]> {
+    /** The current position of the divider from the primary panel's edge as a percentage 0-100. Defaults to 50% of the
+container's initial size. */
     position?: NRO<number>
+    /** The current position of the divider from the primary panel's edge in pixels. */
     "position-in-pixels"?: NRO<number>
+    /** Draws the split panel in a vertical orientation with the start and end panels stacked. */
     vertical?: NRO<boolean>
+    /** Disables resizing. Note that the position may still change as a result of resizing the host element. */
     disabled?: NRO<boolean>
+    /** If no primary panel is designated, both panels will resize proportionally when the host element is resized. If a
+primary panel is designated, it will maintain its size and the other panel will grow or shrink as needed when the
+host element is resized. */
     primary?: NRO<'start' | 'end' | undefined>
+    /** One or more space-separated values at which the divider should snap. Values can be in pixels or percentages, e.g.
+`"100px 50%"`. */
     snap?: NRO<string | undefined>
+    /** How close the divider must be to a snap point until snapping occurs. */
     "snap-threshold"?: NRO<number>
   }
 
