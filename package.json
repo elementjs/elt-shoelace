@@ -25,7 +25,9 @@
     "wtsc": "^0.1.x"
   },
   "peerDependencies": {
-    "@shoelace-style/shoelace": "^2.4.0",
     "osun": "^0.6.x"
+  },
+  "dependencies": {
+    "@shoelace-style/shoelace": "2.11.2"
   }
 }

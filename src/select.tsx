@@ -1,7 +1,7 @@
 import { Renderable, attrs_sl_button, o, e, $scrollable, RepeatScroll, $click, $shadow, css, $disconnected } from "elt"
 import { style } from "osun"
 import { popup } from "./popup"
-import "elt-shoelace/lib/components/select"
+import "./components/select"
 
 
 export interface SelectAttributes<T> extends attrs_sl_button {

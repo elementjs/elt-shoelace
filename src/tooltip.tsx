@@ -184,6 +184,7 @@ sl-popup.eltsl-tooltip::part(popup) {
   font-weight: var(--sl-tooltip-font-weight);
   font-size: var(--sl-tooltip-font-size);
   line-height: var(--sl-tooltip-line-height);
+  z-index: 1000;
 }
 
 sl-popup[placement^='top']::part(popup) {

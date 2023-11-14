@@ -11,11 +11,12 @@
         "outDir": "./lib",
         "rootDir": "./src",
         "jsx": "react",
-        "baseUrl": "./",
+        "baseUrl": "./src",
         "jsxFactory": "e",
         "experimentalDecorators": true,
         "lib": ["dom", "es2020"],
         "types": []
     },
-    "include": ["src"]
+    "include": ["./src"],
+    "exclude": ["./lib/**/*"]
 }
