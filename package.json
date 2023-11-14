@@ -1,10 +1,12 @@
 {
   "name": "elt-shoelace",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "repository": "https://github.com/elementjs/elt-shoelace",
   "description": "some description",
   "license": "MIT",
-  "engines": {"node" : ">=14.0.0" },
+  "engines": {
+    "node": ">=14.0.0"
+  },
   "main": "./lib/index.js",
   "typings": "./lib/index.d.ts",
   "types": "./lib/index.d.ts",
