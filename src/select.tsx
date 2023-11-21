@@ -2,6 +2,7 @@ import { Renderable, attrs_sl_button, o, e, $scrollable, RepeatScroll, $click, $
 import { style } from "osun"
 import { popup } from "./popup"
 import "./components/select"
+import "./components/popup"
 
 
 export interface SelectAttributes<T> extends attrs_sl_button {
