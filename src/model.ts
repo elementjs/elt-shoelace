@@ -6,7 +6,8 @@ import { node_on_disconnected } from "elt"
 
 /**
  * Binds an observable to a Node
- */
+*/
+const lock = o.exclusive_lock()
 export function $model(ob: o.RO<boolean> | o.RO<boolean | null>): (n: { checked: boolean }) => void
 export function $model(ob: o.RO<number>, transformer?: (v: string) => string): (n: { value: number }) => void
 export function $model(ob: o.RO<string> | o.RO<string | null>, transformer?: (v: string) => string): ((n: { readonly value: string | string[]}) => void )
@@ -16,7 +17,6 @@ export function $model(ob: o.RO<any>, unfocused_fn?: (v: string) => string): any
 
   function bind(node: SlElement & { value: string }) {
 
-    const lock = o.exclusive_lock()
 
     node_observe(node, o.join(o_has_focus, ob), ([focus, newval]) => {
       lock(() => {
@@ -72,6 +72,7 @@ export function $model(ob: o.RO<any>, unfocused_fn?: (v: string) => string): any
           let menu: HTMLElement | null = null
 
           function _menu_from_event(ev: SlSelectEvent) {
+            if (ev.detail.item !== node) return
             lock(() => {
               ob.set(ev.detail.item.checked)
             })
