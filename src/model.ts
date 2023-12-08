@@ -8,8 +8,9 @@ import { node_on_disconnected } from "elt"
  * Binds an observable to a Node
 */
 const lock = o.exclusive_lock()
-export function $model(ob: o.RO<boolean> | o.RO<boolean | null>): (n: { checked: boolean }) => void
-export function $model(ob: o.RO<number>, transformer?: (v: string) => string): (n: { value: number }) => void
+export function $model(ob: o.RO<Date> | o.RO<Date | null | undefined>): (n: { valueAsDate: Date | null }) => void
+export function $model(ob: o.RO<boolean> | o.RO<boolean | null | undefined>): (n: { checked: boolean }) => void
+export function $model(ob: o.RO<number> | o.RO<number | null>, transformer?: (v: string) => string): (n: { valueAsNumber: number | null } | { value: number | null }) => void
 export function $model(ob: o.RO<string> | o.RO<string | null>, transformer?: (v: string) => string): ((n: { readonly value: string | string[]}) => void )
 export function $model(ob: o.RO<any>, unfocused_fn?: (v: string) => string): any {
 
@@ -43,6 +44,8 @@ export function $model(ob: o.RO<any>, unfocused_fn?: (v: string) => string): any
           default:
             if (node.tagName === "SL-INPUT" && node.type === "number") {
               node.valueAsNumber = newval || null
+            } else if (node.tagName === "SL-INPUT" && (node.type === "date" || node.type === "datetime-local")) {
+              node.valueAsDate = newval || null
             } else {
               node.value = newval
             }
@@ -82,7 +85,6 @@ export function $model(ob: o.RO<any>, unfocused_fn?: (v: string) => string): any
 
             menu = node.parentElement
             while (menu != null && menu.tagName !== "SL-MENU") {
-              console.log(menu.tagName)
               menu = menu.parentElement
             }
 
@@ -110,6 +112,8 @@ export function $model(ob: o.RO<any>, unfocused_fn?: (v: string) => string): any
                 case "SL-INPUT":
                   if (node.tagName === "SL-INPUT" && node.type === "number") {
                     nval = node.valueAsNumber
+                  } else if (node.tagName === "SL-INPUT" && (node.type === "date" || node.type === "datetime-local")) {
+                    nval = node.valueAsDate
                   } else {
                     nval = node.value
                   }

@@ -12,12 +12,18 @@ export type SpacingValues = "3x-small" | "2x-small" | "x-small" | "small" | "med
 
 export type AlignValues = "center" | "start" | "end" | "self-start" | "baseline" | "first baseline" | "last baseline" | "safe center" | "unsafe center" | "normal" | "stretch"
 
+export type Scheme = "neutral" | "primary"
+
 export interface CommonAttrs extends Attrs<HTMLElement> {
   inline?: NRO<boolean>
   relative?: NRO<boolean>
   grow?: NRO<boolean>
   gap?: NRO<boolean | SpacingValues>
   pad?: NRO<boolean | SpacingValues>
+  "hover"?: NRO<boolean>
+  "scheme"?: NRO<Scheme>
+  "border"?: NRO<boolean>
+  "border-no-radius"?: NRO<boolean>
   "self-align"?: NRO<AlignValues>
   "self-justify"?: NRO<AlignValues>
 }
@@ -72,6 +78,31 @@ e-flex[wrap] { flex-wrap: wrap; }
   --e-gap-horizontal: var(--sl-spacing-medium);
   --e-pad-vertical: var(--sl-spacing-small);
   --e-pad-horizontal: var(--sl-spacing-medium);
+}
+
+:is(e-flex,e-grid,e-box)[border] {
+  border: var(--sl-input-border-width) solid var(--sl-input-border-color);
+  border-radius: var(--sl-input-border-radius-medium);
+  font-size: var(--sl-input-font-size-medium);
+}
+
+:is(e-flex,e-grid,e-box)[scheme="primary"] {
+  border-color: var(--sl-color-primary-200);
+}
+
+:is(e-flex,e-grid,e-box)[hover]:hover {
+  background-color: var(--sl-color-neutral-50);
+  cursor: pointer;
+}
+:is(e-flex,e-grid,e-box)[hover]:active {
+  background-color: var(--sl-color-neutral-100);
+  cursor: pointer;
+}
+:is(e-flex,e-grid,e-box)[hover][scheme="primary"]:hover {
+  background-color: var(--sl-color-primary-50);
+}
+:is(e-flex,e-grid,e-box)[hover][scheme="primary"]:active {
+  background-color: var(--sl-color-primary-100);
 }
 
 :is(e-flex,e-grid,e-box)[relative] { position: relative; }

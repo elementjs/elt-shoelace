@@ -1,4 +1,4 @@
-import { Renderable, attrs_sl_button, o, e, $scrollable, RepeatScroll, $click, $shadow, css, $disconnected } from "elt"
+import { Renderable, attrs_sl_button, o, e, $scrollable, Repeat, $click, $shadow, css, $disconnected } from "elt"
 import { style } from "osun"
 import { popup } from "./popup"
 import "./components/select"
@@ -38,7 +38,7 @@ export function Select<T>(at: SelectAttributes<T>) {
         <div class={cls_select_popup}>
         <e-flex style={{maxHeight: "50vh"}} column>
         {$scrollable}
-        {RepeatScroll(o_opts, (opt, i) => {
+        {Repeat(o_opts, (opt, i) => {
           const o_equals = o.join(model, opt).tf(([mod, opt]) => mod === opt)
           return <e-box class={[cls_popup_cell, {[cls_popup_selected]: o_equals}]} pad="small">
               {"\u200C"}
