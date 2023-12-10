@@ -33,7 +33,7 @@ export interface EBoxAttrs extends CommonAttrs {
 }
 
 export interface EFlexAttrs extends CommonAttrs {
-  wrap?: NRO<boolean>
+  nowrap?: NRO<boolean>
   column?: NRO<boolean>
   reverse?: NRO<boolean>
   "align"?: NRO<AlignValues>
@@ -66,12 +66,12 @@ for (let att of ["gap", "pad"]) {
 css`
 e-box[inline] { display: inline-box; }
 
-e-flex { display: flex; flex-direction: row; }
+e-flex { display: flex; flex-direction: row; flex-wrap: wrap; }
 e-flex[inline] { display: inline-flex; }
 e-flex[column] { flex-direction: column; }
 e-flex[reverse] { flex-direction: row-reverse; }
 e-flex[column][reverse] { flex-direction: column-reverse; }
-e-flex[wrap] { flex-wrap: wrap; }
+e-flex[nowrap] { flex-wrap: nowrap; }
 
 :is(e-flex,e-grid,e-box) {
   --e-gap-vertical: var(--sl-spacing-small);
