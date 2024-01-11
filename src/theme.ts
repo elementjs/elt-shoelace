@@ -1,6 +1,7 @@
 import { style, CssClass, CSSProperties } from 'osun'
 import * as c from "./colorfn"
 
+console.log("theme")
 let nbthemes = 0
 
 export class Basetheme {

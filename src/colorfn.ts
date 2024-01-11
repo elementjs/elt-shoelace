@@ -238,12 +238,24 @@ export function luminosity_adjuster(old_bg: string, new_bg: string) {
   }
 }
 
+// export function interpolate(from: string, to: string, pct: number) {
+//   const frgb = hex2rgb(from)
+//   const trgb = hex2rgb(to)
+//   return rgb2hex([
+//     frgb[0] + (trgb[0] - frgb[0]) * pct,
+//     frgb[1] + (trgb[1] - frgb[1]) * pct,
+//     frgb[2] + (trgb[2] - frgb[2]) * pct,
+//   ])
+// }
+
+
 export function interpolate(from: string, to: string, pct: number) {
-  const frgb = hex2rgb(from)
-  const trgb = hex2rgb(to)
-  return rgb2hex([
+  const frgb = xyzToLuv(rgb2xyz(hex2rgb(from)))
+  const trgb = xyzToLuv(rgb2xyz(hex2rgb(to)))
+
+  return rgb2hex(xyz2rgb(luvToXyz(([
     frgb[0] + (trgb[0] - frgb[0]) * pct,
     frgb[1] + (trgb[1] - frgb[1]) * pct,
     frgb[2] + (trgb[2] - frgb[2]) * pct,
-  ])
+  ]))))
 }
