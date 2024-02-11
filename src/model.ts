@@ -7,6 +7,7 @@ import { node_on_disconnected } from "elt"
 /**
  * Binds an observable to a Node
 */
+let i = 0
 export function $model(ob: o.RO<Date> | o.RO<Date | null | undefined>): (n: { valueAsDate: Date | null }) => void
 export function $model(ob: o.RO<boolean> | o.RO<boolean | null | undefined>): (n: { checked: boolean }) => void
 export function $model(ob: o.RO<number> | o.RO<number | null>, transformer?: (v: string) => string): (n: { valueAsNumber: number | null } | { value: number | null }) => void
@@ -15,6 +16,7 @@ export function $model(ob: o.RO<any>, unfocused_fn?: (v: string) => string): any
 
   const o_has_focus = o(false)
   const lock = o.exclusive_lock()
+  const a = i++
 
   function bind(node: SlElement & { value: string }) {
 
@@ -25,8 +27,11 @@ export function $model(ob: o.RO<any>, unfocused_fn?: (v: string) => string): any
         }
 
         switch (node.tagName) {
+          case "SL-CHECKBOX": {
+            node.checked = newval
+            break
+          }
           case "SL-SWITCH":
-          case "SL-CHECKBOX":
           case "SL-MENU-ITEM":
             node.checked = newval
             break
@@ -44,12 +49,20 @@ export function $model(ob: o.RO<any>, unfocused_fn?: (v: string) => string): any
             if (node.tagName === "SL-INPUT" && node.type === "number") {
               node.valueAsNumber = newval || null
             } else if (node.tagName === "SL-INPUT" && (node.type === "date" || node.type === "datetime-local")) {
-              node.valueAsDate = newval || null
+              if (newval == null) {
+                node.valueAsDate = null
+              } else {
+                const d = newval
+                function _pad(v: number) { return v < 10 ? "0" + v : "" + v }
+                const val = node.type === "date" ? `${d.getFullYear()}-${_pad(d.getMonth()+1)}-${_pad(d.getDate())}` : `${d.getFullYear()}-${_pad(d.getMonth()+1)}-${_pad(d.getDate())}T${_pad(d.getHours())}:${_pad(d.getMinutes())}`
+                node.value = val
+              }
             } else {
               node.value = newval
             }
             break
-        }
+          }
+
       })
     }, { immediate: true })
 
@@ -100,13 +113,16 @@ export function $model(ob: o.RO<any>, unfocused_fn?: (v: string) => string): any
           })
 
         } else {
-          node_add_event_listener(node, "sl-input", () => {
+
+          node_add_event_listener(node, "sl-input", ev => {
             lock(() => {
               let nval
               switch (node.tagName) {
                 case "SL-SWITCH":
                 case "SL-CHECKBOX":
                   nval = node.checked
+                  console.log("getting", nval, a)
+                  // throw new Error("WHAT")
                   break
                 case "SL-INPUT":
                   if (node.tagName === "SL-INPUT" && node.type === "number") {

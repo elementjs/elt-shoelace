@@ -36,7 +36,7 @@ export function Select<T>(at: SelectAttributes<T>) {
           o_expanded.set(false)
         })}
         <div class={cls_select_popup}>
-        <e-flex style={{maxHeight: "50vh"}} column>
+        <e-flex style={{maxHeight: "50vh"}} column nowrap>
         {$scrollable}
         {Repeat(o_opts, (opt, i) => {
           const o_equals = o.join(model, opt).tf(([mod, opt]) => mod === opt)

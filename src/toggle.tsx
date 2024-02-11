@@ -10,13 +10,16 @@ import { theme } from "./theme"
 export function Toggle(attrs: Attrs & {
   size?: o.RO<"small" | "medium" | "large">
   model: o.Observable<boolean> | o.Observable<boolean | null> | o.Observable<boolean | undefined>
+  disabled?: o.RO<boolean>
 }) {
 
   return <sl-button
     size={o.tf(attrs.size, s => s ?? "small")}
     class={o.tf(attrs.model, m => m ? cls_selected : false)}
+    disabled={attrs.disabled}
   >
     {$click(() => { attrs.model.mutate(m => !m) })}
+    &zwnj;
   </sl-button>
 
 }
