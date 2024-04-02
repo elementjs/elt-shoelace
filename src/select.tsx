@@ -35,7 +35,7 @@ export function Select<T>(at: SelectAttributes<T>) {
         {$disconnected(() => {
           o_expanded.set(false)
         })}
-        <div class={cls_select_popup}>
+        <div class={[cls_select_popup, o.tf(size, s => s === "small" ? cls_small : undefined)]}>
         <e-flex style={{maxHeight: "50vh"}} column nowrap>
         {$scrollable}
         {Repeat(o_opts, (opt, i) => {
@@ -121,3 +121,10 @@ const cls_select_popup = style("select-popup", {
   boxShadow: "0 2px 4px var(--sl-color-neutral-300)",
 })
 
+const cls_small = style("select-popup-small", {
+  fontSize: "0.8em",
+})
+
+const cls_big = style("select-popup-big", {
+  fontSize: "1.25em",
+})
