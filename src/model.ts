@@ -52,8 +52,9 @@ export function $model(ob: o.RO<any>, unfocused_fn?: (v: string) => string): any
               if (newval == null) {
                 node.valueAsDate = null
               } else {
-                const d = newval
+                const d = typeof newval === "string" ? new Date(newval) : newval
                 function _pad(v: number) { return v < 10 ? "0" + v : "" + v }
+
                 const val = node.type === "date" ? `${d.getFullYear()}-${_pad(d.getMonth()+1)}-${_pad(d.getDate())}` : `${d.getFullYear()}-${_pad(d.getMonth()+1)}-${_pad(d.getDate())}T${_pad(d.getHours())}:${_pad(d.getMinutes())}`
                 node.value = val
               }
@@ -121,14 +122,13 @@ export function $model(ob: o.RO<any>, unfocused_fn?: (v: string) => string): any
                 case "SL-SWITCH":
                 case "SL-CHECKBOX":
                   nval = node.checked
-                  console.log("getting", nval, a)
                   // throw new Error("WHAT")
                   break
                 case "SL-INPUT":
                   if (node.tagName === "SL-INPUT" && node.type === "number") {
                     nval = node.valueAsNumber
                   } else if (node.tagName === "SL-INPUT" && (node.type === "date" || node.type === "datetime-local")) {
-                    nval = node.valueAsDate
+                    nval = node.valueAsDate ?? new Date(node.value)
                   } else {
                     nval = node.value
                   }

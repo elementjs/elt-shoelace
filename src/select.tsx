@@ -6,9 +6,9 @@ import "./components/popup"
 
 
 export interface SelectAttributes<T> extends attrs_sl_button {
-	model: o.Observable<T>
+	model?: o.Observable<T>
 	options: o.RO<Iterable<T>>
-	labelfn: (opt: T) => Renderable
+	labelfn?: (opt: T) => Renderable
 	disabled?: o.RO<boolean>
 }
 
@@ -18,7 +18,7 @@ export function Select<T>(at: SelectAttributes<T>) {
   const {variant, caret, size, outline} = at
   const o_opts = o.tf(at.options, opts => Array.isArray(opts) ? opts:  [...opts])
   const model = at.model
-  const labelfn = at.labelfn
+  const labelfn = at.labelfn ?? (e => e?.toString())
 
   function show_values(anchor: HTMLElement) {
     o_expanded.set(true)
@@ -45,7 +45,7 @@ export function Select<T>(at: SelectAttributes<T>) {
               {$click(() => {
                 if (o.get(at.disabled)) return
                 var val = o.get(opt)
-                model.set(val)
+                model?.set(val)
                 fut.resolve(null)
               })}
               {o.tf(opt, val => labelfn(val))}
@@ -73,7 +73,7 @@ export function Select<T>(at: SelectAttributes<T>) {
         <slot name="form-control-help-text"></slot>
       </div>
     </>)}
-    {model.tf(m => labelfn(m))}
+    {model?.tf(m => labelfn(m))}
   </e-select>
 }
 
