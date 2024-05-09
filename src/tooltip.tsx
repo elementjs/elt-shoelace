@@ -4,7 +4,7 @@ import { raw as css } from "osun"
 import { animate, animate_hide, animate_show, stop_animations } from "./animation"
 import { SlPopup } from "./components/popup"
 
-export type Content = Renderable | (() => Renderable)
+export type Content = Renderable
 export interface TooltipOptions {
   disabled?: o.RO<boolean>
   trigger?: ("focus" | "hover" | "click")[]
@@ -73,7 +73,7 @@ class TooltipManager {
         shift
         arrow
       >
-        {typeof this.content === "function" ? this.content() : this.content}
+        {node => typeof this.content === "function" ? this.content(node) : this.content}
       </sl-popup> as SlPopup
 
       this.popup.anchor = this.node

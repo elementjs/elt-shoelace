@@ -7,7 +7,6 @@ import { node_on_disconnected } from "elt"
 /**
  * Binds an observable to a Node
 */
-let i = 0
 export function $model(ob: o.RO<Date> | o.RO<Date | null | undefined>): (n: { valueAsDate: Date | null }) => void
 export function $model(ob: o.RO<boolean> | o.RO<boolean | null | undefined>): (n: { checked: boolean }) => void
 export function $model(ob: o.RO<number> | o.RO<number | null>, transformer?: (v: string) => string): (n: { valueAsNumber: number | null } | { value: number | null }) => void
@@ -16,7 +15,6 @@ export function $model(ob: o.RO<any>, unfocused_fn?: (v: string) => string): any
 
   const o_has_focus = o(false)
   const lock = o.exclusive_lock()
-  const a = i++
 
   function bind(node: SlElement & { value: string }) {
 

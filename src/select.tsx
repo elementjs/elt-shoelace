@@ -1,4 +1,4 @@
-import { Renderable, attrs_sl_button, o, e, $scrollable, Repeat, $click, $shadow, css, $disconnected } from "elt"
+import { Renderable, attrs_sl_button, o, e, $scrollable, Repeat, $click, $shadow, css, $disconnected, } from "elt"
 import { style } from "osun"
 import { popup } from "./popup"
 import "./components/select"
@@ -35,7 +35,7 @@ export function Select<T>(at: SelectAttributes<T>) {
         {$disconnected(() => {
           o_expanded.set(false)
         })}
-        <div class={[cls_select_popup, o.tf(size, s => s === "small" ? cls_small : undefined)]}>
+        <div class={[cls_select_popup, o.tf(size, s => s === "small" ? cls_small : s === "large" ? cls_big : undefined)]}>
         <e-flex style={{maxHeight: "50vh"}} column nowrap>
         {$scrollable}
         {Repeat(o_opts, (opt, i) => {
