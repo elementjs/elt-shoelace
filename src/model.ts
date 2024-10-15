@@ -45,7 +45,7 @@ export function $model(ob: o.RO<any>, unfocused_fn?: (v: string) => string): any
           }
           default:
             if (node.tagName === "SL-INPUT" && node.type === "number") {
-              node.valueAsNumber = newval || null
+              node.valueAsNumber = newval
             } else if (node.tagName === "SL-INPUT" && (node.type === "date" || node.type === "datetime-local")) {
               if (newval == null) {
                 node.valueAsDate = null
