@@ -25,6 +25,8 @@ dropdowns that allow for multiple interactions. */
     /** Enable this option to prevent the panel from being clipped when the component is placed inside a container with
 `overflow: auto|scroll`. Hoisting uses a fixed positioning strategy that works in many, but not all, scenarios. */
     hoist?: NRO<boolean>
+    /** Syncs the popup width or height to that of the trigger element. */
+    sync?: NRO<'width' | 'height' | 'both' | undefined>
   }
 
   interface ElementMap {
