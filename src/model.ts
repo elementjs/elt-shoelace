@@ -45,7 +45,7 @@ export function $model(ob: o.RO<any>, unfocused_fn?: (v: string) => string): any
           }
           default:
             if (node.tagName === "SL-INPUT" && node.type === "number") {
-              node.valueAsNumber = newval
+              node.value = newval
             } else if (node.tagName === "SL-INPUT" && (node.type === "date" || node.type === "datetime-local")) {
               if (newval == null) {
                 node.valueAsDate = null
@@ -124,7 +124,7 @@ export function $model(ob: o.RO<any>, unfocused_fn?: (v: string) => string): any
                   break
                 case "SL-INPUT":
                   if (node.tagName === "SL-INPUT" && node.type === "number") {
-                    nval = node.valueAsNumber
+                    nval = node.value === "" || node.value === null ? NaN : Number(node.value)
                   } else if (node.tagName === "SL-INPUT" && (node.type === "date" || node.type === "datetime-local")) {
                     nval = node.valueAsDate ?? new Date(node.value)
                   } else {
