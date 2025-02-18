@@ -7,31 +7,19 @@
   "engines": {
     "node": ">=14.0.0"
   },
-  "main": "./lib/index.js",
-  "typings": "./lib/index.d.ts",
-  "types": "./lib/index.d.ts",
+  "main": "./lib/index.tsx",
   "type": "module",
   "files": [
     "./lib"
   ],
   "scripts": {
-    "build:js": "tsc | wtsc",
-    "build": "npm run build:js",
-    "prepublish": "npm run build",
-    "watch": "tsc -w --preserveWatchOutput | wtsc npm run build"
   },
   "devDependencies": {
     "@types/js-yaml": "^4.0.5",
-    "esbuild": "^0.15.7",
-    "js-yaml": "^4.1.0",
-    "typescript": "^5.4.5",
-    "wtsc": "^0.1.x"
-  },
-  "peerDependencies": {
-    "osun": "^0.6.x"
+    "js-yaml": "^4.1.0"
   },
   "dependencies": {
-    "@shoelace-style/shoelace": "^2.17.1",
+    "@shoelace-style/shoelace": "^2.20.0",
     "colorjs.io": "^0.4.5"
   }
 }
