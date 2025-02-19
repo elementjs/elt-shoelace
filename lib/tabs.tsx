@@ -1,4 +1,4 @@
-import { EltCustomElement, o, register, e, attr, CustomElementAttributes, Renderable, node_append, StyleDefinition, css } from "elt"
+import { EltCustomElement, o, register, e, attr, CustomElementAttributes, Renderable, node_append, css, PartialStyle } from "elt"
 
 
 declare global {
@@ -73,7 +73,7 @@ export class EltSlTabgroup extends EltCustomElement {
   protected _tabs = new Map<string, EltSlTab>()
   protected _panels = new Map<string, EltSlTabPanel>()
 
-  protected _o_style = o({ width: "0px", transform: "none" }) as o.Observable<StyleDefinition>
+  protected _o_style = o({ width: "0px", transform: "none" }) as o.Observable<PartialStyle>
 
   register(child: EltSlTabGroupChild) {
     const name = child.name

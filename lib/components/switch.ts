@@ -26,8 +26,6 @@ the same document or shadow root for this to work. */
     form?: NRO<string>
     /** Makes the switch a required field. */
     required?: NRO<boolean>
-    /** The switch's help text. If you need to display HTML, use the `help-text` slot instead. */
-    "help-text"?: NRO<string>
   }
 
   interface ElementMap {

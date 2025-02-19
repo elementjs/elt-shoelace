@@ -4,7 +4,7 @@
  */
 import SlVisuallyHidden from "@shoelace-style/shoelace/dist/components/visually-hidden/visually-hidden.js"
 
-import { NRO, Attrs } from "elt"
+import { Attrs } from "elt"
 
 export { SlVisuallyHidden }
 declare module "elt" {

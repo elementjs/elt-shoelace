@@ -1,22 +1,21 @@
 {
     "compilerOptions": {
-        "target": "ES2019",
+        "target": "ES2022",
         "module": "es2015",
         "moduleResolution": "node",
         "declaration": true,
         "sourceMap": true,
         "strict": true,
+        "noEmit": true,
         "noUnusedLocals": true,
         "jsxFragmentFactory": "e.Fragment",
-        "outDir": "./lib",
-        "rootDir": "./src",
+        "rootDir": "./lib",
         "jsx": "react",
-        "baseUrl": "./src",
+        "baseUrl": "./lib",
         "jsxFactory": "e",
         "experimentalDecorators": true,
         "lib": ["dom", "es2020"],
         "types": []
     },
-    "include": ["./src"],
-    "exclude": ["./lib/**/*"]
+    "include": ["./lib"],
 }

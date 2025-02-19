@@ -20,9 +20,6 @@ use the `show()` and `hide()` methods and this attribute will reflect the alert'
 the alert before it closes (e.g. moves the mouse over it), the timer will restart. Defaults to `Infinity`, meaning
 the alert will not close on its own. */
     duration?: NRO<string>
-    /** Enables a countdown that indicates the remaining time the alert will be displayed.
-Typically used to indicate the remaining time before a whole app refresh. */
-    countdown?: NRO<'rtl' | 'ltr' | undefined>
   }
 
   interface ElementMap {

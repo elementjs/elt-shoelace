@@ -4,7 +4,7 @@
  */
 import SlMenuLabel from "@shoelace-style/shoelace/dist/components/menu-label/menu-label.js"
 
-import { NRO, Attrs } from "elt"
+import { Attrs } from "elt"
 
 export { SlMenuLabel }
 declare module "elt" {

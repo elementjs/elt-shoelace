@@ -4,7 +4,7 @@
  */
 import SlSpinner from "@shoelace-style/shoelace/dist/components/spinner/spinner.js"
 
-import { NRO, Attrs } from "elt"
+import { Attrs } from "elt"
 
 export { SlSpinner }
 declare module "elt" {

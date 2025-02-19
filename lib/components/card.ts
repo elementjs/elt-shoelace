@@ -4,7 +4,7 @@
  */
 import SlCard from "@shoelace-style/shoelace/dist/components/card/card.js"
 
-import { NRO, Attrs } from "elt"
+import { Attrs } from "elt"
 
 export { SlCard }
 declare module "elt" {

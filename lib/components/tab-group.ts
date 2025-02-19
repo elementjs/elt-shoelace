@@ -16,8 +16,6 @@ manual, the tab will receive focus but will not show until the user presses spac
     activation?: NRO<'auto' | 'manual'>
     /** Disables the scroll arrows that appear when tabs overflow. */
     "no-scroll-controls"?: NRO<boolean>
-    /** Prevent scroll buttons from being hidden when inactive. */
-    "fixed-scroll-controls"?: NRO<boolean>
   }
 
   interface ElementMap {

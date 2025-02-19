@@ -15,8 +15,6 @@ declare module "elt" {
     checked?: NRO<boolean>
     /** A unique value to store in the menu item. This can be used as a way to identify menu items when selected. */
     value?: NRO<string>
-    /** Draws the menu item in a loading state. */
-    loading?: NRO<boolean>
     /** Draws the menu item in a disabled state, preventing selection. */
     disabled?: NRO<boolean>
   }

@@ -4,7 +4,7 @@
  */
 import SlCarouselItem from "@shoelace-style/shoelace/dist/components/carousel-item/carousel-item.js"
 
-import { NRO, Attrs } from "elt"
+import { Attrs } from "elt"
 
 export { SlCarouselItem }
 declare module "elt" {

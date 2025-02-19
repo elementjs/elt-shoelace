@@ -5,61 +5,61 @@
  */
 import type {
   SlAlert,
-  SlAnimation,
   SlAnimatedImage,
   SlBadge,
-  SlBreadcrumbItem,
   SlBreadcrumb,
-  SlAvatar,
+  SlBreadcrumbItem,
+  SlAnimation,
   SlButton,
+  SlAvatar,
   SlButtonGroup,
   SlCard,
   SlCarousel,
   SlCarouselItem,
   SlCheckbox,
   SlColorPicker,
-  SlDetails,
   SlCopyButton,
+  SlDetails,
   SlDialog,
   SlDivider,
   SlDrawer,
   SlDropdown,
-  SlFormatNumber,
   SlFormatBytes,
   SlFormatDate,
+  SlFormatNumber,
+  SlIcon,
+  SlIconButton,
+  SlImageComparer,
   SlInclude,
   SlInput,
-  SlIconButton,
-  SlIcon,
-  SlImageComparer,
+  SlMenu,
   SlMenuItem,
   SlMenuLabel,
-  SlMenu,
   SlMutationObserver,
   SlOption,
-  SlProgressRing,
   SlPopup,
-  SlProgressBar,
+  SlProgressRing,
   SlRadio,
-  SlRadioGroup,
   SlQrCode,
-  SlRadioButton,
   SlRange,
+  SlRadioGroup,
+  SlProgressBar,
+  SlRadioButton,
   SlRating,
   SlRelativeTime,
   SlResizeObserver,
   SlSelect,
   SlSkeleton,
-  SlSplitPanel,
   SlSpinner,
+  SlSplitPanel,
   SlSwitch,
-  SlTabPanel,
   SlTab,
+  SlTabPanel,
   SlTabGroup,
-  SlTextarea,
-  SlTag,
   SlTooltip,
   SlTree,
+  SlTextarea,
+  SlTag,
   SlTreeItem,
   SlVisuallyHidden,
 } from "@shoelace-style/shoelace"
@@ -67,121 +67,121 @@ import type {
 
 export type SlElement = 
   | SlAlert & { tagName: "SL-ALERT" }
-  | SlAnimation & { tagName: "SL-ANIMATION" }
   | SlAnimatedImage & { tagName: "SL-ANIMATED-IMAGE" }
   | SlBadge & { tagName: "SL-BADGE" }
-  | SlBreadcrumbItem & { tagName: "SL-BREADCRUMB-ITEM" }
   | SlBreadcrumb & { tagName: "SL-BREADCRUMB" }
-  | SlAvatar & { tagName: "SL-AVATAR" }
+  | SlBreadcrumbItem & { tagName: "SL-BREADCRUMB-ITEM" }
+  | SlAnimation & { tagName: "SL-ANIMATION" }
   | SlButton & { tagName: "SL-BUTTON" }
+  | SlAvatar & { tagName: "SL-AVATAR" }
   | SlButtonGroup & { tagName: "SL-BUTTON-GROUP" }
   | SlCard & { tagName: "SL-CARD" }
   | SlCarousel & { tagName: "SL-CAROUSEL" }
   | SlCarouselItem & { tagName: "SL-CAROUSEL-ITEM" }
   | SlCheckbox & { tagName: "SL-CHECKBOX" }
   | SlColorPicker & { tagName: "SL-COLOR-PICKER" }
-  | SlDetails & { tagName: "SL-DETAILS" }
   | SlCopyButton & { tagName: "SL-COPY-BUTTON" }
+  | SlDetails & { tagName: "SL-DETAILS" }
   | SlDialog & { tagName: "SL-DIALOG" }
   | SlDivider & { tagName: "SL-DIVIDER" }
   | SlDrawer & { tagName: "SL-DRAWER" }
   | SlDropdown & { tagName: "SL-DROPDOWN" }
-  | SlFormatNumber & { tagName: "SL-FORMAT-NUMBER" }
   | SlFormatBytes & { tagName: "SL-FORMAT-BYTES" }
   | SlFormatDate & { tagName: "SL-FORMAT-DATE" }
+  | SlFormatNumber & { tagName: "SL-FORMAT-NUMBER" }
+  | SlIcon & { tagName: "SL-ICON" }
+  | SlIconButton & { tagName: "SL-ICON-BUTTON" }
+  | SlImageComparer & { tagName: "SL-IMAGE-COMPARER" }
   | SlInclude & { tagName: "SL-INCLUDE" }
   | SlInput & { tagName: "SL-INPUT" }
-  | SlIconButton & { tagName: "SL-ICON-BUTTON" }
-  | SlIcon & { tagName: "SL-ICON" }
-  | SlImageComparer & { tagName: "SL-IMAGE-COMPARER" }
+  | SlMenu & { tagName: "SL-MENU" }
   | SlMenuItem & { tagName: "SL-MENU-ITEM" }
   | SlMenuLabel & { tagName: "SL-MENU-LABEL" }
-  | SlMenu & { tagName: "SL-MENU" }
   | SlMutationObserver & { tagName: "SL-MUTATION-OBSERVER" }
   | SlOption & { tagName: "SL-OPTION" }
-  | SlProgressRing & { tagName: "SL-PROGRESS-RING" }
   | SlPopup & { tagName: "SL-POPUP" }
-  | SlProgressBar & { tagName: "SL-PROGRESS-BAR" }
+  | SlProgressRing & { tagName: "SL-PROGRESS-RING" }
   | SlRadio & { tagName: "SL-RADIO" }
-  | SlRadioGroup & { tagName: "SL-RADIO-GROUP" }
   | SlQrCode & { tagName: "SL-QR-CODE" }
-  | SlRadioButton & { tagName: "SL-RADIO-BUTTON" }
   | SlRange & { tagName: "SL-RANGE" }
+  | SlRadioGroup & { tagName: "SL-RADIO-GROUP" }
+  | SlProgressBar & { tagName: "SL-PROGRESS-BAR" }
+  | SlRadioButton & { tagName: "SL-RADIO-BUTTON" }
   | SlRating & { tagName: "SL-RATING" }
   | SlRelativeTime & { tagName: "SL-RELATIVE-TIME" }
   | SlResizeObserver & { tagName: "SL-RESIZE-OBSERVER" }
   | SlSelect & { tagName: "SL-SELECT" }
   | SlSkeleton & { tagName: "SL-SKELETON" }
-  | SlSplitPanel & { tagName: "SL-SPLIT-PANEL" }
   | SlSpinner & { tagName: "SL-SPINNER" }
+  | SlSplitPanel & { tagName: "SL-SPLIT-PANEL" }
   | SlSwitch & { tagName: "SL-SWITCH" }
-  | SlTabPanel & { tagName: "SL-TAB-PANEL" }
   | SlTab & { tagName: "SL-TAB" }
+  | SlTabPanel & { tagName: "SL-TAB-PANEL" }
   | SlTabGroup & { tagName: "SL-TAB-GROUP" }
-  | SlTextarea & { tagName: "SL-TEXTAREA" }
-  | SlTag & { tagName: "SL-TAG" }
   | SlTooltip & { tagName: "SL-TOOLTIP" }
   | SlTree & { tagName: "SL-TREE" }
+  | SlTextarea & { tagName: "SL-TEXTAREA" }
+  | SlTag & { tagName: "SL-TAG" }
   | SlTreeItem & { tagName: "SL-TREE-ITEM" }
   | SlVisuallyHidden & { tagName: "SL-VISUALLY-HIDDEN" }
 
 
 export function sl_is(node: Element, name: "SL-ALERT"): node is SlAlert
-export function sl_is(node: Element, name: "SL-ANIMATION"): node is SlAnimation
 export function sl_is(node: Element, name: "SL-ANIMATED-IMAGE"): node is SlAnimatedImage
 export function sl_is(node: Element, name: "SL-BADGE"): node is SlBadge
-export function sl_is(node: Element, name: "SL-BREADCRUMB-ITEM"): node is SlBreadcrumbItem
 export function sl_is(node: Element, name: "SL-BREADCRUMB"): node is SlBreadcrumb
-export function sl_is(node: Element, name: "SL-AVATAR"): node is SlAvatar
+export function sl_is(node: Element, name: "SL-BREADCRUMB-ITEM"): node is SlBreadcrumbItem
+export function sl_is(node: Element, name: "SL-ANIMATION"): node is SlAnimation
 export function sl_is(node: Element, name: "SL-BUTTON"): node is SlButton
+export function sl_is(node: Element, name: "SL-AVATAR"): node is SlAvatar
 export function sl_is(node: Element, name: "SL-BUTTON-GROUP"): node is SlButtonGroup
 export function sl_is(node: Element, name: "SL-CARD"): node is SlCard
 export function sl_is(node: Element, name: "SL-CAROUSEL"): node is SlCarousel
 export function sl_is(node: Element, name: "SL-CAROUSEL-ITEM"): node is SlCarouselItem
 export function sl_is(node: Element, name: "SL-CHECKBOX"): node is SlCheckbox
 export function sl_is(node: Element, name: "SL-COLOR-PICKER"): node is SlColorPicker
-export function sl_is(node: Element, name: "SL-DETAILS"): node is SlDetails
 export function sl_is(node: Element, name: "SL-COPY-BUTTON"): node is SlCopyButton
+export function sl_is(node: Element, name: "SL-DETAILS"): node is SlDetails
 export function sl_is(node: Element, name: "SL-DIALOG"): node is SlDialog
 export function sl_is(node: Element, name: "SL-DIVIDER"): node is SlDivider
 export function sl_is(node: Element, name: "SL-DRAWER"): node is SlDrawer
 export function sl_is(node: Element, name: "SL-DROPDOWN"): node is SlDropdown
-export function sl_is(node: Element, name: "SL-FORMAT-NUMBER"): node is SlFormatNumber
 export function sl_is(node: Element, name: "SL-FORMAT-BYTES"): node is SlFormatBytes
 export function sl_is(node: Element, name: "SL-FORMAT-DATE"): node is SlFormatDate
+export function sl_is(node: Element, name: "SL-FORMAT-NUMBER"): node is SlFormatNumber
+export function sl_is(node: Element, name: "SL-ICON"): node is SlIcon
+export function sl_is(node: Element, name: "SL-ICON-BUTTON"): node is SlIconButton
+export function sl_is(node: Element, name: "SL-IMAGE-COMPARER"): node is SlImageComparer
 export function sl_is(node: Element, name: "SL-INCLUDE"): node is SlInclude
 export function sl_is(node: Element, name: "SL-INPUT"): node is SlInput
-export function sl_is(node: Element, name: "SL-ICON-BUTTON"): node is SlIconButton
-export function sl_is(node: Element, name: "SL-ICON"): node is SlIcon
-export function sl_is(node: Element, name: "SL-IMAGE-COMPARER"): node is SlImageComparer
+export function sl_is(node: Element, name: "SL-MENU"): node is SlMenu
 export function sl_is(node: Element, name: "SL-MENU-ITEM"): node is SlMenuItem
 export function sl_is(node: Element, name: "SL-MENU-LABEL"): node is SlMenuLabel
-export function sl_is(node: Element, name: "SL-MENU"): node is SlMenu
 export function sl_is(node: Element, name: "SL-MUTATION-OBSERVER"): node is SlMutationObserver
 export function sl_is(node: Element, name: "SL-OPTION"): node is SlOption
-export function sl_is(node: Element, name: "SL-PROGRESS-RING"): node is SlProgressRing
 export function sl_is(node: Element, name: "SL-POPUP"): node is SlPopup
-export function sl_is(node: Element, name: "SL-PROGRESS-BAR"): node is SlProgressBar
+export function sl_is(node: Element, name: "SL-PROGRESS-RING"): node is SlProgressRing
 export function sl_is(node: Element, name: "SL-RADIO"): node is SlRadio
-export function sl_is(node: Element, name: "SL-RADIO-GROUP"): node is SlRadioGroup
 export function sl_is(node: Element, name: "SL-QR-CODE"): node is SlQrCode
-export function sl_is(node: Element, name: "SL-RADIO-BUTTON"): node is SlRadioButton
 export function sl_is(node: Element, name: "SL-RANGE"): node is SlRange
+export function sl_is(node: Element, name: "SL-RADIO-GROUP"): node is SlRadioGroup
+export function sl_is(node: Element, name: "SL-PROGRESS-BAR"): node is SlProgressBar
+export function sl_is(node: Element, name: "SL-RADIO-BUTTON"): node is SlRadioButton
 export function sl_is(node: Element, name: "SL-RATING"): node is SlRating
 export function sl_is(node: Element, name: "SL-RELATIVE-TIME"): node is SlRelativeTime
 export function sl_is(node: Element, name: "SL-RESIZE-OBSERVER"): node is SlResizeObserver
 export function sl_is(node: Element, name: "SL-SELECT"): node is SlSelect
 export function sl_is(node: Element, name: "SL-SKELETON"): node is SlSkeleton
-export function sl_is(node: Element, name: "SL-SPLIT-PANEL"): node is SlSplitPanel
 export function sl_is(node: Element, name: "SL-SPINNER"): node is SlSpinner
+export function sl_is(node: Element, name: "SL-SPLIT-PANEL"): node is SlSplitPanel
 export function sl_is(node: Element, name: "SL-SWITCH"): node is SlSwitch
-export function sl_is(node: Element, name: "SL-TAB-PANEL"): node is SlTabPanel
 export function sl_is(node: Element, name: "SL-TAB"): node is SlTab
+export function sl_is(node: Element, name: "SL-TAB-PANEL"): node is SlTabPanel
 export function sl_is(node: Element, name: "SL-TAB-GROUP"): node is SlTabGroup
-export function sl_is(node: Element, name: "SL-TEXTAREA"): node is SlTextarea
-export function sl_is(node: Element, name: "SL-TAG"): node is SlTag
 export function sl_is(node: Element, name: "SL-TOOLTIP"): node is SlTooltip
 export function sl_is(node: Element, name: "SL-TREE"): node is SlTree
+export function sl_is(node: Element, name: "SL-TEXTAREA"): node is SlTextarea
+export function sl_is(node: Element, name: "SL-TAG"): node is SlTag
 export function sl_is(node: Element, name: "SL-TREE-ITEM"): node is SlTreeItem
 export function sl_is(node: Element, name: "SL-VISUALLY-HIDDEN"): node is SlVisuallyHidden
 export function sl_is(node: any, name: string): boolean {

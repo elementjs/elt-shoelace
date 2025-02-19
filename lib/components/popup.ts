@@ -72,11 +72,6 @@ change the boundary by passing a reference to one or more elements to this prope
     autoSizeBoundary?: NRO<Element | Element[]>
     /** The amount of padding, in pixels, to exceed before the auto-size behavior will occur. */
     "auto-size-padding"?: NRO<number>
-    /** When a gap exists between the anchor and the popup element, this option will add a "hover bridge" that fills the
-gap using an invisible element. This makes listening for events such as `mouseenter` and `mouseleave` more sane
-because the pointer never technically leaves the element. The hover bridge will only be drawn when the popover is
-active. */
-    "hover-bridge"?: NRO<boolean>
   }
 
   interface ElementMap {
