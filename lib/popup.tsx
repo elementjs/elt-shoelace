@@ -59,7 +59,11 @@ function _eval_popup_click(ev: MouseEvent) {
 
 export const sym_popup_closed = Symbol("popup closed")
 
-export function popup<T>(anchor: Element, fn: (fut: Future<T | typeof sym_popup_closed>) => Node) {
+export function popup<T>(
+  anchor: Element,
+  fn: (fut: Future<T | typeof sym_popup_closed>) => Node,
+  parent: Element | null = null
+) {
 
   const doc = anchor.ownerDocument
   const fut = new Future<T | typeof sym_popup_closed>()
@@ -103,7 +107,7 @@ export function popup<T>(anchor: Element, fn: (fut: Future<T | typeof sym_popup_
       doc.addEventListener("click", _eval_popup_click)
     }
     // node_append(anchor.parentElement!, popup_root, anchor.nextSibling)
-    node_append(doc.body, popup_root)
+    node_append(parent ?? doc.body, popup_root)
 
     // doc.body.appendChild(popup_root)
     popups.add(popup_root)
@@ -111,6 +115,8 @@ export function popup<T>(anchor: Element, fn: (fut: Future<T | typeof sym_popup_
     await popup.updateComplete
     animate(popup.popup, animate_show, { duration: 150 })
   })
+
+  return fut
 }
 
 popup.closed = sym_popup_closed

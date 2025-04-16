@@ -12,7 +12,7 @@
         "rootDir": "./lib",
         "jsx": "react",
         "baseUrl": "./lib",
-        "jsxFactory": "e",
+        "jsxFactory": "E",
         "experimentalDecorators": true,
         "lib": ["dom", "es2020"],
         "types": []

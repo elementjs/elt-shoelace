@@ -7,11 +7,13 @@ import { node_on_disconnected } from "elt"
 /**
  * Binds an observable to a Node
 */
-export function $model(ob: o.RO<Date> | o.RO<Date | null | undefined>): (n: { valueAsDate: Date | null }) => void
-export function $model(ob: o.RO<boolean> | o.RO<boolean | null | undefined>): (n: { checked: boolean }) => void
-export function $model(ob: o.RO<number> | o.RO<number | null>, transformer?: (v: string) => string): (n: { valueAsNumber: number | null } | { value: number | null }) => void
-export function $model(ob: o.RO<string[]> | o.RO<string[] | null>, transformer?: (v: string) => string): ((n: { readonly value: string | string[]}) => void )
-export function $model(ob: o.RO<string> | o.RO<string | null>, transformer?: (v: string) => string): ((n: { readonly value: string | string[]}) => void )
+export function $model(ob: o.RO<Date | null | undefined>): (n: { type: "date" | "datetime-local", }) => void
+export function $model(ob: o.RO<boolean | null | undefined>): (n: { checked: boolean }) => void
+export function $model(ob: o.RO<number | null | undefined>, transformer?: (v: string) => string): (n: { valueAsNumber: number | null } | { value: number | null }) => void
+export function $model(ob: o.RO<string[] | null | undefined>, transformer?: (v: string) => string): ((n: { readonly value: string | string[]}) => void )
+export function $model(ob: o.RO<string | null | undefined>, transformer?: (v: string) => string): ((n: { readonly value: string | string[]}) => void )
+export function $model(ob: o.IObservable<string | null | undefined, string>, transformer?: (v: string) => string): ((n: { readonly value: string | string[]}) => void )
+
 export function $model(ob: o.RO<any>, unfocused_fn?: (v: string) => string): any {
 
   const o_has_focus = o(false)
@@ -26,26 +28,30 @@ export function $model(ob: o.RO<any>, unfocused_fn?: (v: string) => string): any
         }
 
         switch (node.tagName) {
-          case "SL-CHECKBOX": {
+          case "SL-CHECKBOX":
+          case "SL-SWITCH":
+          case "SL-MENU-ITEM": {
             node.checked = newval
             break
           }
-          case "SL-SWITCH":
-          case "SL-MENU-ITEM":
-            node.checked = newval
-            break
           case "SL-SELECT": {
-            node.value = (node.multiple ?
-              (Array.isArray(newval) ? newval : [newval] )
-              : newval
-            ) as any
+            if (newval == null) {
+              node.value = ""
+            } else {
+              node.value = (node.multiple ?
+                (Array.isArray(newval) ? newval : [newval] )
+                : newval
+              ) as any
+            }
             break
           }
           case "SL-TREE": {
             break
           }
           default:
-            if (node.tagName === "SL-INPUT" && node.type === "number") {
+            if (node.tagName === "SL-INPUT" && (node.type === "text" || !node.type)) {
+              node.value = newval ?? ""
+            } else if (node.tagName === "SL-INPUT" && node.type === "number") {
               node.value = newval
             } else if (node.tagName === "SL-INPUT" && (node.type === "date" || node.type === "datetime-local")) {
               if (newval == null) {
@@ -144,7 +150,9 @@ export function $model(ob: o.RO<any>, unfocused_fn?: (v: string) => string): any
                   nval = node.value
                   break
                 }
-                ob.set(Array.isArray(nval) ? nval[0] : nval)
+                if (typeof ob.set === "function") {
+                  ob.set(Array.isArray(nval) ? nval[0] : nval)
+                }
             })
           })
         }

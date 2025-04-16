@@ -1,4 +1,4 @@
-import { $click, Attrs, e, o, css } from "elt"
+import { $click, Attrs, o, css } from "elt"
 
 import "./components/button"
 
@@ -7,7 +7,7 @@ import "./components/button"
  */
 export function Toggle(attrs: Attrs & {
   size?: o.RO<"small" | "medium" | "large">
-  model: o.Observable<boolean> | o.Observable<boolean | null> | o.Observable<boolean | undefined>
+  model: o.IObservable<boolean | null | undefined, boolean>
   disabled?: o.RO<boolean>
 }) {
 
@@ -18,13 +18,14 @@ export function Toggle(attrs: Attrs & {
   >
     {$click(() => { attrs.model.mutate(m => !m) })}
     &zwnj;
+    {/* {o.tf(attrs.model, m => m ? "✅" : "❌")} */}
   </sl-button>
 
 }
 
 
 const cls = css`
-${".eltsl_selected"}:part(base) {
+${".eltsl_selected"}::part(base) {
   background-color: var(--sl-color-primary-500);
   color: var(--sl-color-bg-200);
   border-color: var(--sl-color-primary-600);

@@ -1,4 +1,4 @@
-import { EltCustomElement, o, register, e, attr, CustomElementAttributes, Renderable, node_append, css, PartialStyle } from "elt"
+import { EltCustomElement, o, register, attr, CustomElementAttributes, Renderable, node_append, css, PartialStyle } from "elt"
 
 
 declare global {

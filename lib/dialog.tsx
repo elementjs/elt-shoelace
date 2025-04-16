@@ -1,4 +1,4 @@
-import { $click, Renderable, e, node_add_event_listener, node_append, node_remove, css } from "elt"
+import { $click, Renderable, node_add_event_listener, node_append, node_remove, css, } from "elt"
 import { Future } from "./utils"
 
 

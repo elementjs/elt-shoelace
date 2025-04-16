@@ -1,5 +1,5 @@
 
-import { node_on_connected, node_on_disconnected, Renderable, o, e, node_append, node_remove, css } from "elt"
+import { node_on_connected, node_on_disconnected, Renderable, o, node_append, node_remove, css } from "elt"
 import { animate, animate_hide, animate_show, stop_animations } from "./animation"
 import { SlPopup } from "./components/popup"
 
@@ -39,16 +39,25 @@ class TooltipManager {
     this.onmouseleave = this.onmouseleave.bind(this)
     this.onmouseenter = this.onmouseenter.bind(this)
     this.$decorate = this.$decorate.bind(this)
+
+    this.skidding = this.options.skidding ?? 0
+    this.distance = this.options.distance ?? 8
+    this.disabled = this.options.disabled ?? false
+    this.placement = this.options.placement ?? "bottom"
+    this.trigger = this.options.trigger ?? ["hover", "focus"]
+    this.show_delay = this.options.show_delay ?? 200
+    this.hide_delay = this.options.hide_delay ?? 200
   }
 
+  skidding: number
+  distance: number
+  disabled: o.RO<boolean>
+  placement: o.RO<"top" | "top-start" | "top-end" | "right" | "right-start" | "right-end" | "bottom" | "bottom-start" | "bottom-end" | "left" | "left-start" | "left-end">
+  trigger: ("focus" | "hover" | "click")[]
+  show_delay: number
+  hide_delay: number
+
   // Default options
-  skidding = this.options.skidding ?? 0
-  distance = this.options.distance ?? 8
-  disabled = this.options.disabled ?? false
-  placement = this.options.placement ?? "bottom"
-  trigger = this.options.trigger ?? ["hover", "focus"]
-  show_delay = this.options.show_delay ?? 200
-  hide_delay = this.options.hide_delay ?? 200
 
   o_open = o(false)
 
@@ -96,12 +105,12 @@ class TooltipManager {
   delay_timeout: number | undefined
   delayedshow() {
     clearTimeout(this.delay_timeout)
-    this.delay_timeout = setTimeout(() => { this.show() }, this.show_delay)
+    this.delay_timeout = window.setTimeout(() => { this.show() }, this.show_delay)
   }
 
   delayedhide() {
     clearTimeout(this.delay_timeout)
-    this.delay_timeout = setTimeout(() => { this.hide() }, this.hide_delay)
+    this.delay_timeout = window.setTimeout(() => { this.hide() }, this.hide_delay)
   }
 
   onblur() {

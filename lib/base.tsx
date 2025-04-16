@@ -233,4 +233,67 @@ sl-dialog::part(header) {
 ::-webkit-selection {
   background-color: var(--sl-color-primary-100);
 }
+
+input[type="checkbox"] {
+  appearance: none;
+  background-color: #fff;
+  margin: 0;
+  font: inherit;
+  color: currentColor;
+  width: 1.15em;
+  height: 1.15em;
+  border: 1px solid var(--sl-input-border-color);
+  border-radius: var(--sl-border-radius-small);
+  transform: translateY(-0.075em);
+  transition: var(--sl-transition-fast) background-color ease-in-out, var(--sl-transition-fast) border-color ease-in-out;
+
+  /* ...existing styles */
+  display: inline-grid;
+  place-content: center;
+}
+
+input[type="checkbox"]::before {
+  content: "";
+  width: 0.65em;
+  height: 0.65em;
+  transform: scale(0);
+  transition: var(--sl-transition-fast) transform ease-in-out;
+  box-shadow: inset 1em 1em var(--sl-color-neutral-0);
+
+  transform-origin: bottom left;
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+
+}
+
+input[type="checkbox"]:checked {
+  border-color: var(--sl-color-primary-600);
+  background-color: var(--sl-color-primary-600);
+}
+
+input[type="checkbox"]:checked::before {
+  transform: scale(1);
+}
+
+input[type="checkbox"]:focus {
+  outline: max(2px, 0.15em) solid var(--sl-color-primary-600);
+  /* outline-offset: max(2px, 0.15em);*/
+}
+
+input[type="checkbox"]:disabled {
+  --sl-color-primary-600: var(--sl-input-color-disabled);
+}
+
+label[for] {
+  cursor: pointer;
+  user-select: none;
+}
+
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid var(--sl-color-neutral-50);
+}
+
+
 `

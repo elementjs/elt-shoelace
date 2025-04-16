@@ -1,4 +1,4 @@
-import { Renderable, o, e, $scrollable, Repeat, $click, $shadow, $disconnected, ElementMap, css, DisplayPromise  } from "elt"
+import { Renderable, o, $scrollable, Repeat, $click, $shadow, $disconnected, ElementMap, css, DisplayPromise  } from "elt"
 import { popup } from "./popup"
 import "./components/select"
 import "./components/popup"
@@ -19,12 +19,31 @@ export interface SelectAttributes<T, T2 = T> extends attrs_sl_button {
 export function Select<T, T2 = T>(at: SelectAttributes<T, T2>) {
   const o_expanded = o(false)
   const {variant, caret, size, outline} = at
-  const o_opts = o(at.options).tf(opts => (typeof opts === 'function' ? Promise.resolve(opts()) : Promise.resolve(opts)))
   const model = at.model
   const labelfn = at.labelfn ?? (e => e?.toString())
 
   const fn_convert = at.fn_convert ?? ((o: T2) => o as unknown as T)
   const o_conversion_map = o(new Map<T, T2>())
+
+  function process_opts(opts: Iterable<T2>) {
+    const mp = new Map<T, T2>()
+    for (const val of opts) {
+      mp.set(fn_convert(val), val)
+    }
+    o_conversion_map.set(mp)
+  }
+
+  {
+    const opts = o.get(at.options)
+    if (Array.isArray(opts)) {
+      process_opts(opts)
+    }
+  }
+
+  const o_opts = o(at.options).tf(opts => {
+    return (typeof opts === 'function' ? Promise.resolve(opts()) : Promise.resolve(opts))
+})
+
 
   function show_values(anchor: HTMLElement) {
     o_expanded.set(true)
@@ -48,11 +67,9 @@ export function Select<T, T2 = T>(at: SelectAttributes<T, T2>) {
           .WhileWaiting(() => <sl-spinner/>)
           .WhenResolved(o_res => {
 
-            const mp = new Map<T, T2>()
-            for (const val of o_res.get()) {
-              mp.set(fn_convert(val), val)
+            if (!o_conversion_map.get().size || o_res.get()) {
+              process_opts(o_res.get())
             }
-            o_conversion_map.set(mp)
 
             const o_res2 = o_res.tf(r => (Array.isArray(r) ? r : [...r]))
             return Repeat(o_res2, (opt, i) => {

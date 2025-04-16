@@ -1,4 +1,4 @@
-import { Renderable, e, If, css } from "elt"
+import { Renderable, If, css } from "elt"
 import { show } from "./dialog"
 
 import "./components/dialog"
