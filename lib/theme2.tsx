@@ -273,23 +273,29 @@ extends CSSBuilder<
       const colors = Object.assign({}, this.base_colors, new_colors)
 
       let bg = colors.bg
-      let l_old_bg = old_bg.l - 50
-      let l_new_bg = bg.l - 50
+      let l_old_bg = old_bg.l
+      const old_is_dark = l_old_bg < 50
+      if (old_is_dark) l_old_bg *= -1
+
+      let l_new_bg = bg.l
+      const new_is_dark = l_new_bg < 50
+      if (new_is_dark) l_new_bg -= 100
 
       if (opts?.recompute) {
 
         const keys = Object.keys(colors)
         for (var k of keys) {
           if (k === "fg" || k === "bg") continue
-          function _(l_old_col: number, prev_bg: number, next_bg: number) {
-            l_old_col -= 50
+          function _(l_old_col: number) {
+            if (old_is_dark) l_old_col -= 100
             let ratio = l_old_col / l_old_bg
             let new_lum = l_new_bg * ratio
-            return new_lum + 50
+            if (new_is_dark) new_lum += 100
+            return new_lum
           }
 
           const c = colors[k]
-          const col = {l: _(c.l, old_bg.l, bg.l), c: c.c, h: c.h, a: c.a}
+          const col = {l: _(c.l), c: c.c, h: c.h, a: c.a}
           ;(colors as any)[k] = col
         }
       }
