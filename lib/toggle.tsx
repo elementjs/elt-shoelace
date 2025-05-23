@@ -13,7 +13,7 @@ export function Toggle(attrs: Attrs & {
 
   return <sl-button
     size={o.tf(attrs.size, s => s ?? "small")}
-    class={o.tf(attrs.model, m => m ? cls.eltsl_selected : false)}
+    class={o.tf(attrs.model, m => m ? cls.classes.eltsl_selected : false)}
     disabled={attrs.disabled}
   >
     {$click(() => { attrs.model.mutate(m => !m) })}

@@ -116,7 +116,7 @@ export function Select<T, T2 = T>(at: SelectAttributes<T, T2>) {
             }
           })}
           <slot/>
-          <sl-icon class={[[select_css.expander, {[select_css.expanded]: o_expanded}]]} library="system" name="chevron-down" slot="suffix"></sl-icon>
+          <sl-icon class={[[select_css.classes.expander, {[select_css.classes.expanded]: o_expanded}]]} library="system" name="chevron-down" slot="suffix"></sl-icon>
         </sl-button>
         <slot name="form-control-help-text"></slot>
       </div>
@@ -180,4 +180,4 @@ ${".eltsl_popup_small"} {
 ${".eltsl_popup_big"} {
   font-size: 1.25em;
 }
-`
+`.classes

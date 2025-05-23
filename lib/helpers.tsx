@@ -11,7 +11,7 @@ export function modal(opts: {
   disagree?: Renderable,
   prevent_outside_close?: boolean
 }): Promise<boolean | undefined> {
-  return show<boolean>(fut => <sl-dialog class={cls_dialog.eltsl_dialog}>
+  return show<boolean>(fut => <sl-dialog class={cls_dialog.classes.eltsl_dialog}>
     <header slot="header">{opts.title}</header>
     {opts.body}
     <footer slot="footer">

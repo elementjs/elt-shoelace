@@ -74,7 +74,7 @@ class TooltipManager {
         node_append(this.node.ownerDocument.body, this.popup)
     } else {
       this.popup = <sl-popup
-        class={cls_tooltip.eltsl_tooltip}
+        class={cls_tooltip.classes.eltsl_tooltip}
         placement={this.placement}
         skidding={this.skidding}
         distance={this.distance}

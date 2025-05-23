@@ -97,7 +97,7 @@ export function popup<T>(
     _close_popups()
   }
 
-  popup.classList.add(cls.eltsl_popup)
+  popup.classList.add(cls.classes.eltsl_popup)
   popup.anchor = anchor
   popup.active = true
   popup.style.setProperty("--arrow-color", "var(--sl-color-neutral-300)")
