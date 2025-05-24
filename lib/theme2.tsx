@@ -1,5 +1,4 @@
 import { css, CSSBuilder, push_css_to_head } from "elt"
-import * as c from "./colorfn"
 
 export const theme_base = css`
 ${".theme_class"} {
