@@ -57,7 +57,7 @@ for (let att of ["gap", "pad"]) {
     const sp = spaces[i]
     const less = spaces[i - 1] ?? spaces[i]
     more.push(`
-:is(e-flex,e-grid,e-box)[${att}="${sp}"] { --e-pad-vertical: var(--sl-spacing-${less}); --e-pad-horizontal: var(--sl-spacing-${sp}); }
+:is(e-flex,e-grid,e-box)[${att}="${sp}"] { --e-${att}-vertical: var(--sl-spacing-${less}); --e-${att}-horizontal: var(--sl-spacing-${sp}); }
 `)
   }
 }
@@ -107,7 +107,7 @@ e-flex[nowrap] { flex-wrap: nowrap; }
 :is(e-flex,e-grid,e-box)[relative] { position: relative; }
 :is(e-flex,e-grid,e-box)[grow] { flex-grow: 1; flex-basis: 0; }
 :is(e-flex,e-grid,e-box)[pad] { padding: var(--e-pad-vertical) var(--e-pad-horizontal); }
-:is(e-flex,e-grid)[gap] { gap: var(--e-pad-vertical) var(--e-pad-horizontal); }
+:is(e-flex,e-grid)[gap] { gap: var(--e-gap-vertical) var(--e-gap-horizontal); }
 
 ${more.join("")}
 

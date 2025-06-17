@@ -352,4 +352,7 @@ export const theme = new Theme({
   pink: _(52.46, 0.199, 3.96),
   rose: _(51.43, 0.198, 16.93),
 })
+
+push_css_to_head(theme.__raw)
+// console.log(theme)
 // bg|fg|primary|slate|grey|zinc|stone|red|orange|amber|yellow|lime|green|emerald|teal|cyan|sky|blue|indigo|violet|purple|fuschia|pink|rose
